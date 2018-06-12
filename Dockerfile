@@ -2,6 +2,8 @@ FROM resin/raspberry-pi-node
 
 RUN apt-get update && apt-get upgrade
 
+#RUN apt-get -y install gcc make python-dev git scons swig
+
 COPY package.json /package.json
 
 RUN npm install
