@@ -10,7 +10,7 @@ require("jsdom").env("", function(err, window) {
       return;
   }
 
-  //var $ = require("jquery")(window);
+  var $ = require("jquery")(window);
 });
 
 var indexRouter = require('./routes/index');
