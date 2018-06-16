@@ -1,0 +1,9 @@
+extends ../node_modules/jade-bootstrap/_bootstrap
+
+append styles
+    +bootswatch("darkly")
+    
+block body
+    h1 header
+    +a-btn-success("#") here is a button
+    input(type="text" name="color" data-wheelcolorpicker)
