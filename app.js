@@ -4,14 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-require("jsdom").env("", function(err, window) {
-  if (err) {
-      console.error(err);
-      return;
-  }
-
-  var $ = require("jquery")(window);
-});
+//var $ = require("jquery");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -28,6 +21,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('node_modules', express.static(path.join(__dirname + 'node_modules')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

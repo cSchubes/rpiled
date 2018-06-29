@@ -1,4 +1,4 @@
-extends ../node_modules/jade-bootstrap/_bootstrap
+extends ../jade-bootstrap/_bootstrap
 
 append styles
     +bootswatch("darkly")
@@ -6,4 +6,5 @@ append styles
 block body
     h1 header
     +a-btn-success("#") here is a button
-    input(type="text" name="color" data-wheelcolorpicker)
+    div
+        input(data-wheelColorPicker="" data-wcp-layout="block" data-wcp-autoResize="true" type="text")

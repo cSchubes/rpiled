@@ -1,5 +1,25 @@
-extends layout
+extends ../jade-bootstrap/_bootstrap
 
-block content
-  h1= title
-  p Welcome to #{title}
+append styles
+    +bootswatch("darkly")
+    link(type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.dark.css")
+    
+append scripts
+    script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(type="text/javascript" src="javascripts/jquery.wheelcolorpicker.js")
+
+append head
+    title= title
+
+append body
+    h1(align="center") rpiled
+    .container(align="center")
+        div(class="row" align="center")
+            input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="true" type="text")
+            input(type="text" id="event-color")
+            script.
+                $(function() {
+                    $('#color-input').on('slidermove', function() {
+                        $('#event-color').val($(this).wheelColorPicker('getValue', 'hex'));
+                    });
+                });
