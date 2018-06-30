@@ -10,7 +10,7 @@ RUN apt-get update \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-RUN python -m pip install --upgrade pip setuptools wheel
+RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
 
 # RUN apt-get -y install gcc make python-dev git scons swig
 
@@ -36,5 +36,7 @@ ADD routes/ ./routes
 ADD views/ ./views
 ADD jade-bootstrap/ ./jade-bootstrap
 COPY app.js .
+
+RUN rmmod snd_bcm2835
 
 CMD ["node", "bin/www"]
