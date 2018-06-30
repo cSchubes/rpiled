@@ -41,29 +41,37 @@ append body
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
                                             label(class ="label" id="rgb-input") R:
-                                            input(type="text" id="r-color")
+                                            input(type="text" class="rgb-color" id="R-color")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
                                                 input(type="range" class="slider" min="0" max="255" value="50")
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
-                                            label(class ="label" id="rgb-input") R:
-                                            input(type="text" id="r-color")
+                                            label(class ="label" id="rgb-input") G:
+                                            input(type="text" class="rgb-color" id="G-color")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
                                                 input(type="range" class="slider" min="0" max="255" value="50")
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
-                                            label(class ="label" id="rgb-input") R:
-                                            input(type="text" id="r-color")
+                                            label(class ="label" id="rgb-input") B:
+                                            input(type="text" class="rgb-color" id="B-color")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
-                                                input(type="range" class="slider" min="0" max="255" value="50")
+                                                input(type="range" class="slider"  min="0" max="255" value="50")
                                         
+                                    //Javascript to set slider input values
+                                    //TODO: Move to it's own JS file(if possible)
                                     script.
                                         $(function() {
                                             $('#color-input').on('slidermove', function() {
                                                 $('#event-color').val($(this).wheelColorPicker('getValue', 'hex'));
+                                                var rgb = $(this).wheelColorPicker('getValue', 'rgb');
+                                                var arr = rgb.split(" ")
+                                                $('#R-color').val(arr[0]);
+                                                $('#G-color').val(arr[1]);
+                                                $('#B-color').val(arr[2]);
+                                                //alert(str);
                                             });
                                         });
                 

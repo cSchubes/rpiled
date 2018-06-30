@@ -339,10 +339,10 @@
 				break;
 				
 			case 'rgb':
-				result = "rgb(" + 
-					Math.round(color.r * 255) + "," + 
-					Math.round(color.g * 255) + "," + 
-					Math.round(color.b * 255) + ")";
+				result = "" + 
+					Math.round(color.r * 255) + " " + 
+					Math.round(color.g * 255) + " " + 
+					Math.round(color.b * 255) + "";
 				break;
 				
 			case 'rgb%':
