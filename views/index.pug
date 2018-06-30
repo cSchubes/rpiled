@@ -15,8 +15,9 @@ append body
     h1(align="center") rpiled
     .container(align="center")
         div(class="row" align="center")
-            input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="true" type="text")
-            input(type="text" id="event-color")
+            input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="false" type="text")
+            div(class="row" align="center")
+                input(type="text" id="event-color")
             script.
                 $(function() {
                     $('#color-input').on('slidermove', function() {
