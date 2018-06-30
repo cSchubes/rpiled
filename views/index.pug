@@ -5,10 +5,6 @@ append styles
     link(type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.dark.css")
     link(type="text/css" rel="stylesheet" href="stylesheets/style.css")
 
-append scripts
-    script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
-    script(type="text/javascript" src="javascripts/jquery.wheelcolorpicker.js")
-
 append head
     title= title
 
@@ -20,20 +16,21 @@ append body
             div(class="row" align="center" id="rgbdiv")
                 label(class="label") Hex:
                 input(type="text" id="event-color")
+                +btn("Set to Hex Value")(id="hex-btn")
             div(class="row" align ="center" id="rgbdiv")
                 label(class ="label") R:
                 input(type="text" id="r-color")
-                div(class="row" align ="center" id="slider-wrapper")
+                //div(class="row" align ="center" id="slider-wrapper")
                     input(type="range" class="slider" min="0" max="255" value="50")
-            //div(class="row" align ="center" id="rgbdiv")
+            div(class="row" align ="center" id="rgbdiv")
                 label(class ="label") G:
                 input(type="text" id="r-color")
-                input(type="range" class="slider" min="0" max="255" value="50")
-            //div(class="row" align ="center" id="rgbdiv")
+                //input(type="range" class="slider" min="0" max="255" value="50")
+            div(class="row" align ="center" id="rgbdiv")
                 label(class ="label") B:
                 input(type="text" id="r-color")
-                input(type="range" class="slider" min="0" max="255" value="50")
-            div(class="column" align="center" id="slider-wrapper")
+                //input(type="range" class="slider" min="0" max="255" value="50")
+            //div(class="column" align="center" id="slider-wrapper")
                 
             script.
                 $(function() {
@@ -41,3 +38,8 @@ append body
                         $('#event-color').val($(this).wheelColorPicker('getValue', 'hex'));
                     });
                 });
+                
+append scripts
+    script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(type="text/javascript" src="javascripts/jquery.wheelcolorpicker.js")
+    script(src="javascripts/index_scripts.js")

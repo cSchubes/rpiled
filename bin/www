@@ -12,7 +12,13 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort('80');
+let portNum = '80'
+
+if(process.argv.length > 2) {
+  portNum = process.argv[2]
+}
+
+var port = normalizePort(portNum);
 app.set('port', port);
 
 /**
@@ -75,6 +81,7 @@ function onError(error) {
     default:
       throw error;
   }
+  server.close()
 }
 
 /**

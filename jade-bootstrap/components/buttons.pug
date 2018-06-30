@@ -29,9 +29,9 @@ mixin a-btn-success(url)
 mixin btn(caption,style,size)
 	- var type = (typeof style === 'undefined') ? "default" : style
 	unless size
-		button.btn(class=`btn-${type}`,type="button")= caption
+		button.btn(class=`btn-${type}`,type="button",id=attributes.id)= caption
 	else
-		button.btn(class=`btn-${type} btn-${size}`,type="button")= caption
+		button.btn(class=`btn-${type} btn-${size}`,type="button",id=attributes.id)= caption
 
 
 mixin btn-primary(caption)
