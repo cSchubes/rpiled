@@ -27,4 +27,4 @@ ADD views/ ./views
 ADD jade-bootstrap/ ./jade-bootstrap
 COPY app.js .
 
-CMD ["ls"]
+CMD ["node", "bin/www"]
