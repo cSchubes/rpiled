@@ -5,7 +5,7 @@ ENV INITSYSTEM on
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
-    && apt-get install scons python-dev python-pip swig \
+    && apt-get install scons python-dev python-pip swig rpi.gpio \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
