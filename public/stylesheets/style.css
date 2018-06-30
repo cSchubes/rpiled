@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+.label {
+  padding-right: 10px;
+  font-size: 14px;
+}
+.slider {
+  width: 5px;
+  margin: 0;
+}
+.slider-wrapper {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+}
+#event-color {
+  
+}
+#r-color {
+  width: 40px;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+#rgbdiv {
+  padding-top:5px;
+}
