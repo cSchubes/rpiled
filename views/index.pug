@@ -34,31 +34,32 @@ append body
                                     // hex pickter
                                     div(class="row" align="center" )
                                         label(class="label") Hex:
-                                        input(type="text" id="event-color")
+                                        input(type="text" id="event-color" value="ffffff")
                                         +btn("Submit Hex")(id="hex-btn")
 
                                     //rgb sliders
+                                    //TODO: Set values to defaults pulled from Database
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
                                             label(class ="label" id="rgb-input") R:
-                                            input(type="text" class="rgb-color" id="R-color")
+                                            input(type="text" class="rgb-color" id="R-color" value="255")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
-                                                input(type="range" class="slider" id="r-slider" min="0" max="255" value="50")
+                                                input(type="range" class="slider" id="r-slider" min="0" max="255" value="255")
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
                                             label(class ="label" id="rgb-input") G:
-                                            input(type="text" class="rgb-color" id="G-color")
+                                            input(type="text" class="rgb-color" id="G-color" value="255")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
-                                                input(type="range" class="slider" id="g-slider" min="0" max="255" value="50")
+                                                input(type="range" class="slider" id="g-slider" min="0" max="255" value="255")
                                     div(class="row" align ="center" id="rgbdiv")
                                         div(class="row-col" id="rc-input")
                                             label(class ="label" id="rgb-input") B:
-                                            input(type="text" class="rgb-color" id="B-color")
+                                            input(type="text" class="rgb-color" id="B-color" value="255")
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
-                                                input(type="range" class="slider" id="b-slider" min="0" max="255" value="50" )
+                                                input(type="range" class="slider" id="b-slider" min="0" max="255" value="255" )
                                         
                                     //Javascript to set slider input values
                                     //TODO: Move to it's own JS file(if possible)
