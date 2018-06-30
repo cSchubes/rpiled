@@ -10,7 +10,11 @@ a {
   padding-right: 10px;
   font-size: 14px;
 }
-
+.row-col {
+  float: left;
+  margin: 2px;
+  padding: 2px;
+}
 .slider-wrapper {
   display: inline-block;
   width: 20px;
@@ -27,12 +31,27 @@ a {
   min-height:100%;
   position:relative;
 }
+#hex-btn {
+  margin: 10px;
+  font-size: 13px;
+}
 #r-color {
   width: 40px;
-  padding-right: 5px;
-  padding-left: 5px;
-  padding-top: 5px;
 }
 #rgbdiv {
   padding-top:5px;
+  margin: 2px;
+  width: 250px;
+}
+#rc-input {
+  width:40%
+}
+#rc-id {
+  width:2px;
+}
+#rc-slider {
+  width:40%;
+}
+#rgb-input {
+  width: 25px;
 }

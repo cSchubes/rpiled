@@ -10,42 +10,55 @@ append head
     title= title
 
 append body
+    //cover template defaults
     .container(align="center" id="container")
         .site-wrapper
             .site-wrapper-inner
                 .cover-container
                     .masthead.clearfix
                         .inner
+                            //navbar + tabs
                             h3.masthead-brand rpiled
                             nav
                                 ut.nav.masthead-nav
                                     li.active
                                         a(href="#") Home
                                     li
-                                        a(href="#") Features
+                                        a(href="/cool") Features
                         .inner.cover
                             h1.cover-heading rplied
                             container(align="center")
                                 div(class="row" align="center" id="main")
+                                    //colorwheel
                                     input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="false" type="text")
-                                    div(class="row" align="center" id="rgbdiv")
+                                    // hex pickter
+                                    div(class="row" align="center" )
                                         label(class="label") Hex:
                                         input(type="text" id="event-color")
-                                        +btn("Set to Hex Value")(id="hex-btn")
+                                        +btn("Submit Hex")(id="hex-btn")
+
+                                    //rgb sliders
                                     div(class="row" align ="center" id="rgbdiv")
-                                        label(class ="label") R:
-                                        input(type="text" id="r-color")
-                                        //div(class="row" align ="center" id="slider-wrapper")
-                                            input(type="range" class="slider" min="0" max="255" value="50")
+                                        div(class="row-col" id="rc-input")
+                                            label(class ="label" id="rgb-input") R:
+                                            input(type="text" id="r-color")
+                                        div(class="row-col" id="rc-slider")
+                                            div(id="slider-wrapper")
+                                                input(type="range" class="slider" min="0" max="255" value="50")
                                     div(class="row" align ="center" id="rgbdiv")
-                                        label(class ="label") G:
-                                        input(type="text" id="r-color")
-                                        //input(type="range" class="slider" min="0" max="255" value="50")
+                                        div(class="row-col" id="rc-input")
+                                            label(class ="label" id="rgb-input") R:
+                                            input(type="text" id="r-color")
+                                        div(class="row-col" id="rc-slider")
+                                            div(id="slider-wrapper")
+                                                input(type="range" class="slider" min="0" max="255" value="50")
                                     div(class="row" align ="center" id="rgbdiv")
-                                        label(class ="label") B:
-                                        input(type="text" id="r-color")
-                                        //input(type="range" class="slider" min="0" max="255" value="50")
-                                    //div(class="column" align="center" id="slider-wrapper")
+                                        div(class="row-col" id="rc-input")
+                                            label(class ="label" id="rgb-input") R:
+                                            input(type="text" id="r-color")
+                                        div(class="row-col" id="rc-slider")
+                                            div(id="slider-wrapper")
+                                                input(type="range" class="slider" min="0" max="255" value="50")
                                         
                                     script.
                                         $(function() {
