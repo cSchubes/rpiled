@@ -3,10 +3,12 @@ FROM resin/raspberry-pi-node
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
-    && apt-get install scons python-dev swig \
+    && apt-get install scons python-dev python-pip swig \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
+
+RUN python -m pip install --upgrade pip setuptools wheel
 
 # RUN apt-get -y install gcc make python-dev git scons swig
 
