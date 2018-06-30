@@ -37,6 +37,6 @@ ADD views/ ./views
 ADD jade-bootstrap/ ./jade-bootstrap
 COPY app.js .
 
-RUN rmmod snd_bcm2835
+#RUN rmmod snd_bcm2835
 
 CMD ["node", "bin/www"]
