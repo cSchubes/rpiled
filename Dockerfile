@@ -27,4 +27,4 @@ COPY views/ .
 COPY jade-bootstrap/ .
 COPY app.js .
 
-CMD ["node", "run", "start"]
+CMD ["node", "bin/www"]
