@@ -1,5 +1,7 @@
 FROM resin/raspberry-pi-node
 
+ENV INITSYSTEM on
+
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
