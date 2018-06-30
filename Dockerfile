@@ -3,6 +3,7 @@ FROM resin/raspberry-pi-node
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
+    && apt-get install scons python-dev swig \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
@@ -19,6 +20,11 @@ WORKDIR /usr/src/app
 COPY package.json .
 
 RUN npm install
+
+ADD rpi_ws281x/ ./rpi_ws281x
+WORKDIR rpi_ws281x/
+RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
+WORKDIR /usr/src/app
 
 ADD bin/ ./bin
 ADD public/ ./public
