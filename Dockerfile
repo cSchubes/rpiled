@@ -23,7 +23,7 @@ RUN npm install
 
 ADD rpi_ws281x/ ./rpi_ws281x
 WORKDIR rpi_ws281x/
-RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
+RUN scons && python python/setup.py build && python python/setup.py install
 WORKDIR /usr/src/app
 
 ADD bin/ ./bin
