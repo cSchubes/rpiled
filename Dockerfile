@@ -21,10 +21,10 @@ COPY package.json .
 RUN npm install
 
 ADD bin/ ./bin
-COPY public/ ./public
-COPY routes/ ./routes
-COPY views/ ./views
-COPY jade-bootstrap/ ./jade-bootstrap
+ADD public/ ./public
+ADD routes/ ./routes
+ADD views/ ./views
+ADD jade-bootstrap/ ./jade-bootstrap
 COPY app.js .
 
 CMD ["ls"]
