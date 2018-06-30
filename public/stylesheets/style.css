@@ -10,18 +10,22 @@ a {
   padding-right: 10px;
   font-size: 14px;
 }
-.slider {
-  width: 5px;
-  margin: 0;
-}
+
 .slider-wrapper {
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 20px;
   padding: 0;
+}
+.slider {
+  width:20px;
 }
 #event-color {
   
+}
+#container {
+  min-height:100%;
+  position:relative;
 }
 #r-color {
   width: 40px;

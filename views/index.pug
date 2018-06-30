@@ -4,40 +4,55 @@ append styles
     +bootswatch("darkly")
     link(type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.dark.css")
     link(type="text/css" rel="stylesheet" href="stylesheets/style.css")
+    link(href="stylesheets/cover.css", rel="stylesheet")
 
 append head
     title= title
 
 append body
-    h1(align="center") rpiled
-    .container(align="center")
-        div(class="row" align="center" id="main")
-            input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="false" type="text")
-            div(class="row" align="center" id="rgbdiv")
-                label(class="label") Hex:
-                input(type="text" id="event-color")
-                +btn("Set to Hex Value")(id="hex-btn")
-            div(class="row" align ="center" id="rgbdiv")
-                label(class ="label") R:
-                input(type="text" id="r-color")
-                //div(class="row" align ="center" id="slider-wrapper")
-                    input(type="range" class="slider" min="0" max="255" value="50")
-            div(class="row" align ="center" id="rgbdiv")
-                label(class ="label") G:
-                input(type="text" id="r-color")
-                //input(type="range" class="slider" min="0" max="255" value="50")
-            div(class="row" align ="center" id="rgbdiv")
-                label(class ="label") B:
-                input(type="text" id="r-color")
-                //input(type="range" class="slider" min="0" max="255" value="50")
-            //div(class="column" align="center" id="slider-wrapper")
-                
-            script.
-                $(function() {
-                    $('#color-input').on('slidermove', function() {
-                        $('#event-color').val($(this).wheelColorPicker('getValue', 'hex'));
-                    });
-                });
+    .container(align="center" id="container")
+        .site-wrapper
+            .site-wrapper-inner
+                .cover-container
+                    .masthead.clearfix
+                        .inner
+                            h3.masthead-brand rpiled
+                            nav
+                                ut.nav.masthead-nav
+                                    li.active
+                                        a(href="#") Home
+                                    li
+                                        a(href="#") Features
+                        .inner.cover
+                            h1.cover-heading rplied
+                            container(align="center")
+                                div(class="row" align="center" id="main")
+                                    input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="false" type="text")
+                                    div(class="row" align="center" id="rgbdiv")
+                                        label(class="label") Hex:
+                                        input(type="text" id="event-color")
+                                        +btn("Set to Hex Value")(id="hex-btn")
+                                    div(class="row" align ="center" id="rgbdiv")
+                                        label(class ="label") R:
+                                        input(type="text" id="r-color")
+                                        //div(class="row" align ="center" id="slider-wrapper")
+                                            input(type="range" class="slider" min="0" max="255" value="50")
+                                    div(class="row" align ="center" id="rgbdiv")
+                                        label(class ="label") G:
+                                        input(type="text" id="r-color")
+                                        //input(type="range" class="slider" min="0" max="255" value="50")
+                                    div(class="row" align ="center" id="rgbdiv")
+                                        label(class ="label") B:
+                                        input(type="text" id="r-color")
+                                        //input(type="range" class="slider" min="0" max="255" value="50")
+                                    //div(class="column" align="center" id="slider-wrapper")
+                                        
+                                    script.
+                                        $(function() {
+                                            $('#color-input').on('slidermove', function() {
+                                                $('#event-color').val($(this).wheelColorPicker('getValue', 'hex'));
+                                            });
+                                        });
                 
 append scripts
     script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
