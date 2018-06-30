@@ -27,4 +27,4 @@ COPY ./views/ .
 COPY ./jade-bootstrap/ .
 COPY app.js .
 
-CMD ["cat", "bin/www"]
+CMD ["ls"]
