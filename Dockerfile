@@ -5,12 +5,12 @@ ENV INITSYSTEM on
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
-    && apt-get install scons python-dev python-pip swig rpi.gpio \
+    && apt-get install scons python-dev python-pip swig rpi.gpio gcc \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
+# RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
 
 # RUN apt-get -y install gcc make python-dev git scons swig
 
