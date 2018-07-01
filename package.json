@@ -14,7 +14,8 @@
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "mongodb": "^3.0.5",
-    "monk": "^6.0.5"
+    "monk": "^6.0.5",
+    "rpi-ws281x-native": "*"
   },
   "devDependencies": {
     "nodemon": "^1.17.5"
