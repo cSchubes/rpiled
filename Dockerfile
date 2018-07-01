@@ -25,10 +25,9 @@ COPY package.json .
 
 RUN npm install
 
-ADD rpi_ws281x/ ./rpi_ws281x
-WORKDIR rpi_ws281x/
-RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
-WORKDIR /usr/src/app
+#ADD rpi_ws281x/ ./rpi_ws281x
+#WORKDIR rpi_ws281x/
+#RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
 
 ADD bin/ ./bin
 ADD public/ ./public
@@ -36,6 +35,7 @@ ADD routes/ ./routes
 ADD views/ ./views
 ADD jade-bootstrap/ ./jade-bootstrap
 COPY app.js .
+COPY testLeds.js .
 
 #RUN rmmod snd_bcm2835
 
