@@ -9,3 +9,6 @@
 
 -Implement new page to create "preset colors changes"
     -Add colors to "array", set time interval(static or dynamic?)
+
+# API Call Structure
+POST with param *color* set to a 6 digit hex string
