@@ -1,26 +1,12 @@
+//test getrequest function
 
-function performGetRequest1() {
-    var temp = ';'
-     
-     axios.get('http://localhost:3000/api')
-       .then(function (response) {
-         temp = response;
-         console.log(temp);
-         alert("performing get request");
-       })
-       .catch(function (error) {
-         alert("ERRORS");
-         console.log(error);
-         //resultElement.innerHTML = generateErrorHTMLOutput(error);
-       });   
-   }
 
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
     console.log($('#event-color').val())
     $('#color-input').wheelColorPicker('setValue', $('#event-color').val());
     setSliders();
-    performGetRequest1()
+    performPostRequest($('#event-color').val());
     
 };
 
