@@ -1,8 +1,17 @@
+import axios from 'axios';
+
+const server = axios.create({
+    baseURL: 'https://51c09351c4895d8b8917f6f8e7276ccf.resindevice.io',
+    timeout: 1000,
+    
+});
+
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
     console.log($('#event-color').val())
     $('#color-input').wheelColorPicker('setValue', $('#event-color').val());
     setSliders();
+    
 };
 
 // Update slider+hex when moving color wheel
