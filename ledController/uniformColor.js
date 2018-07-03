@@ -1,5 +1,5 @@
 // we will need this eventually to actually control the lights
-import ws281x from 'rpi-ws281x-native';
+//import ws281x from 'rpi-ws281x-native';
 
 exports.setColor = (req, res, next) => {
     console.log('Here is where we would change the color of the LEDs.');
