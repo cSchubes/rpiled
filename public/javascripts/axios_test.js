@@ -15,9 +15,7 @@ function performGetRequest1() {
 }
 
 function performPostRequest(hexColor) {
-    axios.post('http://localhost:3000/api/uniformColor/setColor', {
-        color: hexColor,
-      })
+    axios.post(`/api/uniformColor/setColor/${hexColor}`)
       .then(function (response) {
         console.log(response);
       })
