@@ -5,19 +5,12 @@ ENV INITSYSTEM on
 RUN apt-get update && apt-get upgrade
 
 RUN apt-get update \
-    && apt-get install scons python-dev python-pip swig rpi.gpio gcc \
+    && apt-get install make scons python-dev python-pip swig rpi.gpio gcc \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
 
-# RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
-
-# RUN apt-get -y install gcc make python-dev git scons swig
-
-#RUN git clone https://github.com/jgarff/rpi_ws281x && \
-#    cd rpi_ws281x && scons && \
-#    cd python && python setup.py build && \
-#    python setup.py install
+RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
 
 WORKDIR /usr/src/app
 
@@ -25,9 +18,9 @@ COPY package.json .
 
 RUN npm install
 
-#ADD rpi_ws281x/ ./rpi_ws281x
-#WORKDIR rpi_ws281x/
-#RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
+ADD rpi_ws281x/ ./rpi_ws281x
+WORKDIR rpi_ws281x/
+RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
 
 ADD bin/ ./bin
 ADD public/ ./public
