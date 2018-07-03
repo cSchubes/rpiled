@@ -19,10 +19,10 @@ function performPostRequest(hexColor) {
         color: hexColor,
       })
       .then(function (response) {
-        resultElement.innerHTML = generateSuccessHTMLOutput(response);
+        console.log(response);
       })
       .catch(function (error) {
-        resultElement.innerHTML = generateErrorHTMLOutput(error);
+        console.log(error);
       });
     
 }
