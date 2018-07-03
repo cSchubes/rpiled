@@ -11,4 +11,4 @@ const setColor = (req, res, next) => {
     });
 }
 
-export { setColor };
+module.exports = setColor;
