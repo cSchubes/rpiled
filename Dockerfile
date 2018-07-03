@@ -1,4 +1,4 @@
-FROM resin/raspberry-pi-node
+FROM resin/raspberry-pi-node:8
 
 ENV INITSYSTEM on
 
@@ -18,9 +18,9 @@ COPY package.json .
 
 RUN npm install
 
-ADD rpi_ws281x/ ./rpi_ws281x
-WORKDIR rpi_ws281x/
-RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
+#ADD rpi_ws281x/ ./rpi_ws281x
+#WORKDIR rpi_ws281x/
+#RUN scons && cd python/ && python ./setup.py build && python ./setup.py install
 
 ADD bin/ ./bin
 ADD public/ ./public
