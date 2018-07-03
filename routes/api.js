@@ -9,9 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* Post new color to LED */
-router.post('/uniformColor/setColor', function(req, res, next) {
-    res.send('colors fucker');
-    uniformController.setColor(req, res, next);
-});
+
+router.post('/uniformColor/setColor', uniformController.setColor);
 
 module.exports = router;
