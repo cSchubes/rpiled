@@ -23,6 +23,19 @@ const gamma8 = [
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 ];
   
+var gamma   = 2.8; // Correction factor
+var max_in  = 255, // Top end of INPUT range
+var max_out = 255; // Top end of OUTPUT range
+/*
+for(let i = 0; i <= max_in; i++) {
+    if(i > 0) print(',');
+    if((i & 15) == 0) print("\n  ");
+    System.out.format("%3d",
+    (int)(pow((float) i / (float)max_in, gamma) * max_out + 0.5));
+}
+println(" };");
+*/
+  
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }

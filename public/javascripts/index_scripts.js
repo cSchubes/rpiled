@@ -19,7 +19,7 @@ document.getElementById('hex-btn').onclick = () => {
 $(function() {
     $('#color-input').on('slidermove', function() {
         setSliders();
-        performPostRequest(rInput.value, gInput.value, bInput.value);
+        // performPostRequest(rInput.value, gInput.value, bInput.value);
     });
 });
 
