@@ -1,15 +1,12 @@
 # Current Features
 - Index page
-1. Color Wheel + Brightness slider
-2. RBG + Hex Value Fields
+    1. Color Wheel + Brightness slider
+    2. RBG + Hex Value Fields
+        -Properly update on change/submit
 
 # Features to Implement
 - Updating input fields
-    1. Map Button to JS
-    2. Change Color wheel on RGB Sliders
-        - Set slider value to default, update them on change
-    3. Snap to white on color wheel (idk if this is good/possible)
-    4. Prevent scrolling on mobile when controlling the color wheel/sliders
+    1. Snap to white on color wheel (idk if this is good/possible)
 
 - Feature Page
     1. Create "preset colors changes"
@@ -22,5 +19,14 @@
 
 # API Call Structure
 POST with param *color* set to a 6 digit hex string
+
+# Front-End TODO
+-Update UI/UX
+    -Currently looks fine on desktop, however mobile site is sloppy-- for unknown reasons
+    -Probably will rebuild UI from ground up at later date
+-Fix scrolling on mobile
+    -Looked into this, tried a bunch of solutions, but none of them really work
+    -Small workaround is to tap + use safari so page doesn't refresh
+
 
 
