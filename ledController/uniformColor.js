@@ -56,7 +56,7 @@ exports.setColor = (req, res, next) => {
     let g = gammaArr[req.body.g];
     let b = gammaArr[req.body.b];
     console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
-    let newColor = rgb2Int(req.body.r, req.body.g, req.body.b);
+    let newColor = rgb2Int(req.body.r, req.body.g, Math.floor(req.body.b * .75));
     for (var i = 0; i < constants.NUM_LEDS; i++) {
         pixelData[i] = newColor;
     };
