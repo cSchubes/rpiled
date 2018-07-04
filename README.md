@@ -22,7 +22,3 @@
 
 # API Call Structure
 POST with param *color* set to a 6 digit hex string
-
-# Contributing
-We will use commitizen to for commits. Instead of doing `git commit` just use `git cz`. 
-Installing commitizen is as simple as doing `npm install` in the project directory and then doing `npm install -g commitizen` to install it on your system.
