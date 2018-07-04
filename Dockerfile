@@ -16,7 +16,7 @@ WORKDIR /usr/src/app
 
 COPY package.json .
 
-RUN npm install
+RUN npm install --production
 
 #ADD rpi_ws281x/ ./rpi_ws281x
 #WORKDIR rpi_ws281x/
@@ -27,8 +27,8 @@ ADD public/ ./public
 ADD routes/ ./routes
 ADD views/ ./views
 ADD jade-bootstrap/ ./jade-bootstrap
+ADD ledController/ ./ledController
 COPY app.js .
-COPY testLeds.js .
 
 #RUN rmmod snd_bcm2835
 
