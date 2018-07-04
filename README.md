@@ -9,6 +9,9 @@
     -Snap to white on color wheel
     -Prevent scrolling on mobile when controlling the color wheel/sliders
 
+-Index page
+1. 
+
 -Implement new page to create "preset colors changes"
     -Add colors to "array", set time interval(static or dynamic?)
 
