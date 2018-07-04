@@ -22,3 +22,5 @@
 
 # API Call Structure
 POST with param *color* set to a 6 digit hex string
+
+
