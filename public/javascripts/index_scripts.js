@@ -8,8 +8,8 @@ var bInput = document.getElementById("B-color");
 var hexInput = document.getElementById("event-color");
 
 // Update color wheel based on hex input
-document.getElementById("hex-btn").onclick = () => {
-    console.log($('#event-color').val())
+document.getElementById('hex-btn').onclick = () => {
+    console.log($('#event-color').val());
     $('#color-input').wheelColorPicker('setValue', hexInput);
     setSliders();
     performPostRequest(rInput.value, gInput.value, bInput.value);
