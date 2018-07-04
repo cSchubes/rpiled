@@ -1,0 +1,1 @@
+exports.NUM_LEDS = 300;
