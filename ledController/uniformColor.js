@@ -23,18 +23,18 @@ const gamma8 = [
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 ];
   
-var gamma   = 2.8; // Correction factor
+var gamma   = 2; // Correction factor
 var max_in  = 255; // Top end of INPUT range
 var max_out = 255; // Top end of OUTPUT range
-/*
+
+let gammaArr = [];
+
 for(let i = 0; i <= max_in; i++) {
-    if(i > 0) print(',');
-    if((i & 15) == 0) print("\n  ");
-    System.out.format("%3d",
-    (int)(pow((float) i / (float)max_in, gamma) * max_out + 0.5));
+    let entry = Math.floor(Math.pow(i/max_in, gamma) * max_out + 0.5);
+    gammaArr.push(entry);
 }
-println(" };");
-*/
+
+console.log(gammaArr);
   
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
@@ -52,9 +52,9 @@ function hexToRgb(hex) {
 exports.setColor = (req, res, next) => {
     console.log('Here is where we would change the color of the LEDs.');
     console.log(req.body)
-    let r = gamma8[req.body.r];
-    let g = gamma8[req.body.g];
-    let b = gamma8[req.body.b];
+    let r = gammaArr[req.body.r];
+    let g = gammaArr[req.body.g];
+    let b = gammaArr[req.body.b];
     console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
     let newColor = rgb2Int(r, g, b);
     for (var i = 0; i < constants.NUM_LEDS; i++) {
