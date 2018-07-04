@@ -4,7 +4,6 @@ document.getElementById('hex-btn').onclick = () => {
     $('#color-input').wheelColorPicker('setValue', $('#event-color').val());
     setSliders();
     performPostRequest($('#event-color').val());
-    
 };
 
 // Updates other pars when moving slider
