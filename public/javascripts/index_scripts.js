@@ -1,6 +1,3 @@
-//test getrequest function
-
-
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
     console.log($('#event-color').val())
@@ -8,13 +5,6 @@ document.getElementById('hex-btn').onclick = () => {
     setSliders();
     performPostRequest($('#R-color').val(), $('#G-color').val(), $('#B-color').val());
 };
-
-// Update slider+hex when moving color wheel
-$(function() {
-    $('#color-input').on('slidermove', function() {
-        setSliders();
-    });
-});
 
 // Updates other pars when moving slider
 var rSlider = document.getElementById('r-slider');
@@ -24,6 +14,14 @@ var gInput = document.getElementById("G-color");
 var bSlider = document.getElementById('b-slider');
 var bInput = document.getElementById("B-color");
 var hexInput = document.getElementById("event-color");
+
+// Update slider+hex when moving color wheel
+$(function() {
+    $('#color-input').on('slidermove', function() {
+        setSliders();
+        performPostRequest(hexInput.value);
+    });
+});
 
 rSlider.onchange = function(){
     rInput.value = rSlider.value;
