@@ -7,7 +7,6 @@ document.getElementById('hex-btn').onclick = () => {
     $('#color-input').wheelColorPicker('setValue', $('#event-color').val());
     setSliders();
     performPostRequest($('#event-color').val());
-    
 };
 
 // Update slider+hex when moving color wheel
