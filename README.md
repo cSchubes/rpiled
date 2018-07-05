@@ -21,20 +21,24 @@
 POST with param *color* set to a 6 digit hex string
 
 # Front-End TODO
--Update UI/UX
-    -Currently looks fine on desktop, however mobile site is sloppy-- for unknown reasons
-    -Probably will rebuild UI from scratch/diff template at later date
--Fix scrolling on mobile
-    -Looked into this, tried a bunch of solutions, but none of them really work
-        -Looks like this is impossible, I tried disabling scrolling completely, and it will still scroll the page
-            -https://github.com/fujaru/jquery-wheelcolorpicker/issues/28
-        -Some alternatives: 
+- Update UI/UX
+    - Currently looks fine on desktop, however mobile site is sloppy-- for unknown reasons
+    - Probably will rebuild UI from scratch/diff template at later date
+- Fix scrolling on mobile
+    - Looked into this, tried a bunch of solutions, but none of them really work
+        - Looks like this is impossible, I tried disabling scrolling completely, and it will still scroll the page
+            - https://github.com/fujaru/jquery-wheelcolorpicker/issues/28
+        - Some alternatives: 
             1. Use a different Color Picker(Spectrum,...,...)
                 -This can be only for mobile
             2. Fuck the mobile users
-    -Current workaround is to tap + use safari so page doesn't refresh accidentally
--Sliders are hard to use on mobile
-    -Again, might need an AIO
+    - Current workaround is to tap + use safari so page doesn't refresh accidentally
+- Sliders are hard to use on mobile
+    - Again, might need an AIO
+- Dark/Light mode toggle
+- Log in Page
+    - Passport.js
+    - MongoDB
 
     
 
