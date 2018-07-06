@@ -36,9 +36,17 @@ POST with param *color* set to a 6 digit hex string
 - Sliders are hard to use on mobile
     - Again, might need an AIO
 - Dark/Light mode toggle
-- Log in Page
+- Checkbox to disable/enable live update
+- Log in Page - Front end Done
     - Passport.js
+        - Handle Authentication w/ Mongo
+        - Post using passport.local to backend, which sends to mongo?
     - MongoDB
+        - User accounts created -> access to the DB
+        - Website connects to the DB using user credientials
+            - Provide URI
+        - For the RPI, install Mongo DB on it, then connect somehow??
+            - https://docs.mongodb.com/manual/reference/connection-string/
 
     
 

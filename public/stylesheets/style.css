@@ -57,3 +57,22 @@ a {
 #rgb-input {
   width: 25px;
 }
+#checkboxdiv {
+  display: inline-block;
+  width: 100%;
+  float: left;
+}
+#check-id {
+  transform: scale(1.4);
+}
+#cblabel {
+  width: 68%;
+  left: -7px;
+  position: relative;
+}
+#cb {
+  width: 50px;
+  top: -2px;
+  left: -27px;
+  position: relative;
+}

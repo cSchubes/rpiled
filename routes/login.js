@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('passport-strategy');
 var router = express.Router();
 
 /* GET home page. */
@@ -6,5 +7,6 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'login' });
 });
+
 
 module.exports = router;
