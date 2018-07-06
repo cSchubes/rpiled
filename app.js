@@ -15,6 +15,8 @@ var loginRouter = require('./routes/login');
 
 var app = express();
 
+require('public/javascripts/login_scripts');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
