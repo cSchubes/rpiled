@@ -25,6 +25,6 @@ ADD jade-bootstrap/ ./jade-bootstrap
 ADD ledController/ ./ledController
 COPY app.js .
 
-RUN rmmod snd_bcm2835
+# RUN rmmod snd_bcm2835
 
 CMD ["node", "bin/www"]
