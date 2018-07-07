@@ -1,6 +1,6 @@
 FROM resin/raspberry-pi-node:8
 
-ENV INITSYSTEM on
+# ENV INITSYSTEM on
 
 RUN apt-get update \
     && apt-get upgrade \
@@ -11,7 +11,7 @@ WORKDIR /usr/src/app
 
 COPY package.json .
 
-RUN npm install --production
+RUN npm install
 
 #ADD rpi_ws281x/ ./rpi_ws281x
 #WORKDIR rpi_ws281x/
