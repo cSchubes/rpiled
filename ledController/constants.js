@@ -1,1 +1,1 @@
-exports.NUM_LEDS = 100;
+exports.NUM_LEDS = 300;
