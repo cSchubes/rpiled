@@ -5,7 +5,7 @@ var constants = require('./constants');
 ws281x.init(constants.NUM_LEDS);
 var pixelData = new Uint32Array(constants.NUM_LEDS);
 
-const gamma8 = [
+const gammaArr = [
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
@@ -27,14 +27,16 @@ var gamma   = 2; // Correction factor
 var max_in  = 255; // Top end of INPUT range
 var max_out = 255; // Top end of OUTPUT range
 
-let gammaArr = [];
+// let gammaArr = [];
 
+/*
 for(let i = 0; i <= max_in; i++) {
     let entry = Math.floor(Math.pow(i/max_in, gamma) * max_out + 0.5);
     gammaArr.push(entry);
 }
 
 console.log(gammaArr);
+*/
   
 function rgb2Int(r, g, b) {
     return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
