@@ -2,15 +2,10 @@ FROM resin/raspberry-pi-node:8
 
 ENV INITSYSTEM on
 
-RUN apt-get update && apt-get upgrade
-
 RUN apt-get update \
-    && apt-get install make scons python-dev python-pip swig rpi.gpio gcc \
     && apt-get upgrade \
     && apt-get clean \
 && rm -rf /var/lib/apt/lists/*
-
-RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
 
 WORKDIR /usr/src/app
 
@@ -30,6 +25,6 @@ ADD jade-bootstrap/ ./jade-bootstrap
 ADD ledController/ ./ledController
 COPY app.js .
 
-#RUN rmmod snd_bcm2835
+RUN rmmod snd_bcm2835
 
-# CMD ["node", "bin/www"]
+CMD ["node", "bin/www"]
