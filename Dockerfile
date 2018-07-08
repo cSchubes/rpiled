@@ -1,11 +1,11 @@
 FROM resin/raspberry-pi-node:8
 
-# ENV INITSYSTEM on
+ENV INITSYSTEM on
 
 RUN apt-get update \
-    && apt-get upgrade \
-    && apt-get clean \
-&& rm -rf /var/lib/apt/lists/*
+    && apt-get upgrade 
+#    && apt-get clean \
+# && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
 
