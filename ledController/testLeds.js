@@ -25,7 +25,7 @@ setInterval(function () {
   ws281x.render(pixelData);
 }, 1000 / 30);
 */
-
+// ugh
 let sleepTime = 50/1000;
 let color = 0xbf00ff;
 
