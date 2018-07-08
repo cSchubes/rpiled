@@ -17,7 +17,8 @@
     "monk": "^6.0.5",
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
-    "rpi-ws281x-native": "*"
+    "rpi-ws281x-native": "*",
+    "thread-sleep": "^2.1.0"
   },
   "devDependencies": {
     "commitizen": "^2.10.1",
