@@ -1,7 +1,7 @@
 var ws281x = require('rpi-ws281x-native');
 var sleep = require('thread-sleep');
 
-var NUM_LEDS = parseInt(process.argv[2], 10) || 10,
+var NUM_LEDS = parseInt(process.argv[2], 10) || 300,
     pixelData = new Uint32Array(NUM_LEDS);
 
 ws281x.init(NUM_LEDS);
