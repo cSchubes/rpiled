@@ -6,6 +6,7 @@ var gInput = document.getElementById("G-color");
 var bSlider = document.getElementById('b-slider');
 var bInput = document.getElementById("B-color");
 var hexInput = document.getElementById("event-color");
+var brightnessInput = document.getElementById("brightness-input");
 
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
@@ -14,6 +15,10 @@ document.getElementById('hex-btn').onclick = () => {
     setSliders();
     performPostRequest(rInput.value, gInput.value, bInput.value);
 };
+
+document.getElementById('brightness-btn').onclick = () => {
+    postBrightness(brightnessInput.value);
+}
 
 // Update slider+hex when moving color wheel
 $(function() {

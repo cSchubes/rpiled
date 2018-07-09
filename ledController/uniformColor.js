@@ -81,8 +81,11 @@ exports.setColor = (req, res, next) => {
 };
 
 exports.setBrightness = (req, res, next) => {
-    console.log('Here is where we would change the color of the LEDs.');
-    let newBrightness = parseInt(req.params.brightness);
+    console.log('Here is where we would change the brightness of the LEDs.');
+    let newBrightness = parseInt(req.body.brightness);
+    console.log(newBrightness);
+    ws281x.setBrightness(newBrightness);
+    ws281x.render(pixelData);
     res.status(200).json({
         data: {
             message: `Successfully changed brightness to: ${newBrightness}`

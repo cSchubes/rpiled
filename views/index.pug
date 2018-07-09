@@ -60,6 +60,14 @@ append body
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
                                                 input(type="range" class="slider" id="b-slider" min="0" max="255" value="255" )
+                                    div(class="row" align ="center" id="rgbdiv")
+                                        div(class="row-col" id="rc-input")
+                                            label(class ="label" id="rgb-input") Brightness:
+                                            input(type="text" class="rgb-color" id="brightness-input" value="255")
+                                        div(class="row-col" id="rc-slider")
+                                            div(id="slider-wrapper")
+                                                input(type="range" class="slider" id="brightness-slider" min="0" max="255" value="255" )
+                                        +btn("Submit Brightness")(id="brightness-btn")
                                         
                                     //Javascript to set slider input values
                                     //TODO: Move to it's own JS file(if possible)

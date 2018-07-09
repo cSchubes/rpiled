@@ -24,3 +24,13 @@ function performPostRequest(r, g, b) {
       });
     
 }
+
+function postBrightness(b) {
+  axios.post('/api/uniformColor/setBrightness', { brightness: b })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
