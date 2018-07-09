@@ -15,19 +15,17 @@ let sleepTime = 20/1000;
 let realSleepTime = parseInt(sleepTime * Math.pow(10, 6));
 console.log(realSleepTime);
 let color = 0xbf00ff;
-let iterations = 50;
+let iterations = 300;
 
-while(true){
-    for (let i = 0; i < iterations; i++){
-        for (let q = 0; q < 3; q++){
-            for(let j = 0; j < 300; j+=3){
-                pixelData[j+q] = color;
-            }
-            ws281x.render(pixelData);
-            sleep.usleep(realSleepTime);
-            for (let j = 0; j < 300; j+=3){
-                pixelData[j+q] = 0;
-            }
+for (let i = 0; i < iterations; i++){
+    for (let q = 0; q < 3; q++){
+        for(let j = 0; j < 300; j+=3){
+            pixelData[j+q] = color;
+        }
+        ws281x.render(pixelData);
+        sleep.usleep(realSleepTime);
+        for (let j = 0; j < 300; j+=3){
+            pixelData[j+q] = 0;
         }
     }
 }
