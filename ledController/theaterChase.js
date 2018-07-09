@@ -11,7 +11,7 @@ process.on('SIGINT', function () {
     process.nextTick(function () { process.exit(0); });
 });
 
-let sleepTime = 20/1000;
+let sleepTime = 25/1000;
 let realSleepTime = parseInt(sleepTime * Math.pow(10, 6));
 console.log(realSleepTime);
 let color = 0xbf00ff;
