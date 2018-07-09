@@ -13,6 +13,7 @@
     2. Add colors to "array", set time interval(static or dynamic?)
     3. Have given presets for every user(can upload our cool ones)
     4. Allow user to make own based on their login-- saved on to DB(mongo?)
+    5. Twinkle effect two colors flip
     
 - Hardware
     1. Accurate color rendition on the lights
