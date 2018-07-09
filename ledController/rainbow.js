@@ -16,7 +16,7 @@ process.on('SIGINT', function () {
 // ---- animation-loop
 var offset = 0;
 
-/*
+
 setInterval(function () {
   for (var i = 0; i < NUM_LEDS; i++) {
     pixelData[i] = colorwheel((offset + i) % 256);
@@ -25,36 +25,8 @@ setInterval(function () {
   offset = (offset + 1) % 256;
   ws281x.render(pixelData);
 }, 1000 / 30);
-*/
-// ugh
-let sleepTime = 50/1000;
-let realSleepTime = parseInt(sleepTime * Math.pow(10, 6));
-console.log(realSleepTime);
-let color = 0xbf00ff;
-let iterations = 50;
 
-for (let i = 100; i < 200; i++) {
-  pixelData[i] = 0xffff00;
-}
-for (let i = 200; i < 300; i++) {
-  pixelData[i] = 0xff0000;
-}
-ws281x.render(pixelData);
 
-/*
-for (let i = 0; i < iterations; i++){
-  for (let q = 0; q < 3; q++){
-    for(let j = 0; j < 300; j+=3){
-      pixelData[j+q] = color;
-    }
-    ws281x.render(pixelData);
-    sleep.usleep(realSleepTime);
-    for (let j = 0; j < 300; j+=3){
-      pixelData[j+q] = 0;
-    }
-  }
-}
-*/
 console.log('Press <ctrl>+C to exit.');
 
 
