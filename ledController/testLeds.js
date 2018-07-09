@@ -28,6 +28,7 @@ setInterval(function () {
 */
 // ugh
 let sleepTime = parseInt(50/1000);
+console.log(sleepTime);
 let color = 0xbf00ff;
 let iterations = 50;
 
