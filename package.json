@@ -18,6 +18,7 @@
     "morgan": "~1.9.0",
     "pug": "2.0.0-beta11",
     "rpi-ws281x-native": "*",
+    "sleep": "^5.1.1",
     "thread-sleep": "^2.1.0"
   },
   "devDependencies": {

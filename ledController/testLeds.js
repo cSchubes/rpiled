@@ -1,5 +1,5 @@
 var ws281x = require('rpi-ws281x-native');
-var sleep = require('thread-sleep');
+var sleep = require('sleep');
 
 var NUM_LEDS = parseInt(process.argv[2], 10) || 300,
     pixelData = new Uint32Array(NUM_LEDS);
@@ -27,23 +27,22 @@ setInterval(function () {
 }, 1000 / 30);
 */
 // ugh
-let sleepTime = parseInt(50/1000);
-console.log(sleepTime);
+let sleepTime = 50/1000;
+let realSleepTime = parseInt(sleepTime * Math.pow(10, 6));
+console.log(realSleepTime);
 let color = 0xbf00ff;
 let iterations = 50;
 
 
-while (true) {
-  for (let i = 0; i < iterations; i++){
-    for (let q = 0; q < 3; q++){
-      for(let j = 0; j < 300; j+=3){
-        pixelData[i+q] = color;
-      }
-      ws281x.render(pixelData);
-      sleep(sleepTime);
-      for (let j = 0; j < 300; j+=3){
-        pixelData[i+q] = 0;
-      }
+for (let i = 0; i < iterations; i++){
+  for (let q = 0; q < 3; q++){
+    for(let j = 0; j < 300; j+=3){
+      pixelData[i+q] = color;
+    }
+    ws281x.render(pixelData);
+    sleep.usleep(realSleepTime);
+    for (let j = 0; j < 300; j+=3){
+      pixelData[i+q] = 0;
     }
   }
 }
