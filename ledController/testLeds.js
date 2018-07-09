@@ -37,12 +37,12 @@ let iterations = 50;
 for (let i = 0; i < iterations; i++){
   for (let q = 0; q < 3; q++){
     for(let j = 0; j < 300; j+=3){
-      pixelData[i+q] = color;
+      pixelData[j+q] = color;
     }
     ws281x.render(pixelData);
     sleep.usleep(realSleepTime);
     for (let j = 0; j < 300; j+=3){
-      pixelData[i+q] = 0;
+      pixelData[j+q] = 0;
     }
   }
 }
