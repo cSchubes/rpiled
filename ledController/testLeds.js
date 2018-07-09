@@ -33,7 +33,15 @@ console.log(realSleepTime);
 let color = 0xbf00ff;
 let iterations = 50;
 
+for (let i = 100; i < 200; i++) {
+  pixelData[i] = 0xffff00;
+}
+for (let i = 200; i < 300; i++) {
+  pixelData[i] = 0xff0000;
+}
+ws281x.render(pixelData);
 
+/*
 for (let i = 0; i < iterations; i++){
   for (let q = 0; q < 3; q++){
     for(let j = 0; j < 300; j+=3){
@@ -46,7 +54,7 @@ for (let i = 0; i < iterations; i++){
     }
   }
 }
-
+*/
 console.log('Press <ctrl>+C to exit.');
 
 
