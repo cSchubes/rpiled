@@ -5,6 +5,7 @@ append styles
     link(type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.dark.css")
     link(type="text/css" rel="stylesheet" href="stylesheets/style.css")
     link(href="stylesheets/cover.css", rel="stylesheet")
+    
 
 append scripts
     script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
@@ -25,8 +26,6 @@ append body
                 .cover-container
                     .masthead.clearfix
                         .inner
-                            //navbar + tabs
-                            h3.masthead-brand rpiled
                             nav
                                 ut.nav.masthead-nav
                                     li.active
@@ -34,7 +33,8 @@ append body
                                     li
                                         a(href="/login") Features
                         .inner.cover
-                            h1.cover-heading rpiled
+                            h1.cover-heading RPI
+                                span(style="color: #70e0fe;" id="span1") LED
                             container(align="center")
                                 div(class="row" align="center" id="main")
                                     //colorwheel

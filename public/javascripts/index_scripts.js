@@ -8,6 +8,7 @@ var bInput = document.getElementById("B-color");
 var hexInput = document.getElementById("event-color");
 var aValue = 1;
 
+
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
     console.log($('#event-color').val());
@@ -20,8 +21,7 @@ document.getElementById('hex-btn').onclick = () => {
 $(function() {
     $('#color-input').on('slidermove', function() {
         setSliders();
-        if ($('#check-id:checked').val() !== undefined)
-        {
+        if ($('#check-id:checked').val() !== undefined) {
             performPostRequest(rInput.value, gInput.value, bInput.value);
         }
     });
@@ -87,6 +87,7 @@ bInput.onchange = function() {
 setSliders = function() {
     $('#event-color').val($("#color-input").wheelColorPicker('getValue', 'hex'));
     var rgb = $("#color-input").wheelColorPicker('getValue', 'rgba');
+    var save = rgb;
     rgb = rgb.substring(5,rgb.length-1)
     console.log(rgb);
     var arr = rgb.split(",");
@@ -97,6 +98,7 @@ setSliders = function() {
     $('#r-slider').val(arr[0]);
     $('#g-slider').val(arr[1]);
     $('#b-slider').val(arr[2]);
+    $('#span1').css('color', save);
     aValue = arr[3];
 }
 var rgbHelper = function (rgb) { 

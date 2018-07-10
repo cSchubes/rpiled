@@ -1,21 +1,22 @@
 var express = require('express');
-var passport = require('passport-strategy');
 var router = express.Router();
 
-/* GET home page. */
-// TODO: Change to home page eventually, done in app.js
-router.get('/', function(req, res, next) {
-  res.render('login', { title: 'login' });
-});
+module.exports = function(app, passport) {
+    /* GET home page. */
+    // TODO: Change to home page eventually, done in app.js
+    app.get('/login', function(req, res, next) {
+        res.render('login', { title: 'login' });
+    });
 
-// Perform action upon posting to login
-router.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
+    // Perform action upon posting to login
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/index', // redirect to the secure profile section
+        failureRedirect : '/', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+}
 
-module.exports = router;
+
 
 /*//routes/auth.js
 const express = require('express');

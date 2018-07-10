@@ -7,6 +7,7 @@ append head
         /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
         @import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
         @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+        @import url(https://fonts.googleapis.com/css?family=Titillium+Web);
 
         body{
             margin: 0;
@@ -66,7 +67,7 @@ append head
 
         .login{
             position: absolute;
-            top: calc(50% - 75px);
+            top: calc(50% - 125px);
             left: calc(50% - 50px);
             height: 150px;
             width: 350px;
@@ -158,6 +159,11 @@ append head
             z-index: 2;
             border-left-color: bebebe;
         }
+        #header1 {
+            color: #e4ebe3;
+            font-family: 'Titillium Web', sans-serif;
+            font-style: bold;
+        }
 
 append body
     div(class="body")
@@ -170,17 +176,17 @@ append body
             if (message != null && message.length > 0)
                 div(class="alert alert-danger")
                     .error #{message}
-            form(method="POST" action="/login")
+            form(method="POST" action="/signup")
+                h1(id="header1") Create Acccount
                 input(type="text" placeholder="username" id="username" name="username")
                 br
                 input(type="password" placeholder="password" id="password" name="password")
                 br
-                input(type="submit" id="loginButton" value="Login")
-                br
-                br
-                span(style="color: white; padding-right: 6px;") New user?
-                a(href="/signup") Create Account
+                input(type="submit" id="signupButton" value="Submit")
+
+    
 
     append scripts
         <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        script(src="javascripts/login_scripts.js")

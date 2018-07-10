@@ -1,3 +1,7 @@
+# TODO BEFORE YOU RUN
+- Install MongoDB
+- Create a ".env" file and set SECRET_KEY and DB_NAME
+
 # Current Features
 - Index page
     1. Color Wheel + Brightness slider
@@ -47,7 +51,8 @@ POST with param *color* set to a 6 digit hex string
             - Provide URI
         - For the RPI, install Mongo DB on it, then connect somehow??
             - https://docs.mongodb.com/manual/reference/connection-string/
-
+    - Flash
+        - Add Middleware updates
     
 
 
