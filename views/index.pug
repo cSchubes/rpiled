@@ -12,6 +12,7 @@ append scripts
     script(type="text/javascript" src="javascripts/modules/jquery.wheelcolorpicker.js")
     script(src="javascripts/axios_test.js")
     script(src="javascripts/index_scripts.js")
+    script(src="javascripts/login_scripts.js")
     script(src="javascripts/modules/axios.min.js")
     //script(src="https://unpkg.com/axios/dist/axios.min.js")
 
@@ -32,6 +33,8 @@ append body
                                         a(href="#") Home
                                     li
                                         a(href="/login") Features
+                                    li
+                                        a(href="/login" id="logout") Log Out
                         .inner.cover
                             h1.cover-heading RPI
                                 span(style="color: #70e0fe;" id="span1") LED
@@ -73,5 +76,6 @@ append body
                                             label(for="checkbox" id="checkboxLabel") Dynamic Update:
                                         div(class="row-col" id="cb")    
                                             input(type="checkbox" name="checkboxname" value="value" id="check-id")
+
                                     
                 

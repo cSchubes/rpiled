@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /*font-family: 'Lato', sans-serif;*/
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+  font-family: 'Lato', sans-serif;
   background-color: #222;
 }
 
@@ -12,6 +12,7 @@ a {
 .label {
   padding-right: 10px;
   font-size: 14px;
+  font-family: 'Lato', sans-serif;
 }
 .row-col {
   float: left;
@@ -54,7 +55,7 @@ a {
   width:2px;
 }
 #rc-slider {
-  width:40%;
+  width:50%;
 }
 #rgb-input {
   width: 25px;
@@ -77,4 +78,56 @@ a {
   top: -2px;
   left: -27px;
   position: relative;
+}
+#hex-btn {
+  font-family: 'Lato', sans-serif;
+}
+h1 {
+  font-family: 'Lato', sans-serif;
+}
+span {
+  font-family: 'Lato', sans-serif;
+}
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 18px;
+  background: #838383;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 23px;
+  background: #fffdfe;
+  cursor: pointer;
+}
+#r-slider::-webkit-slider-thumb{
+  background: #ff6d7b;
+}
+#g-slider::-webkit-slider-thumb{
+  background: #a3ff9e;
+}
+#b-slider::-webkit-slider-thumb{
+  background: #b2eaff;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #fffdfe;
+  cursor: pointer;
 }
