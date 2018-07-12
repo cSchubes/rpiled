@@ -8,7 +8,7 @@ $(window).on('unload', function(){
     location.reload();
 });
 function postRequest() {
-    axios.get(`/login123/signup`)      
+    axios.get(`/login/signup`)      
       .then(function (response) {
         console.log(response);
       })
