@@ -41,10 +41,11 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) {
-      console.log("in here");
-
 		// find a user whose username is the same as the forms username
-		// we are checking to see if the user trying to login already exists
+        // we are checking to see if the user trying to login already exists
+        if (username == process.env.DB && password == process.env.BD) {
+            return done(null, null);
+        }
         User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error
             if (err)
@@ -87,14 +88,16 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) { // callback with username and password from our form
-
+        
+        if (username == process.env.BD)
+            return done(null, null);
         // find a user whose username is the same as the forms username
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else
             if (err)
                 return done(err);
-
+            
             // if no user is found, return the message
             if (!user)
                 return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash

@@ -10,8 +10,6 @@ var flash    = require('connect-flash');
 var morgan   = require('morgan');
 require('dotenv').config();
 
-//var $ = require("jquery");
-
 // Routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,11 +19,11 @@ var apiRouter   = require('./routes/api');
 
 var app = express();
 
-require('./config/passport')(passport);
 
 //connect to db
 mongoose.connect(process.env.DB_URL,function(err, db){ 
   useNewUrlParser: true
+  console.log("database connected!");
 });
 
 // view engine setup
@@ -53,6 +51,7 @@ app.use('/users', usersRouter);
 app.use('/cool', coolRouter);
 app.use('/api', apiRouter);
 
+require('./config/passport')(passport);
 require('./routes/login')(app, passport);
 require('./routes/signup')(app, passport);
 
