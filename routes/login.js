@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
         passport.authenticate('local-logout');
         res.send("fk off blimey iots comin hom");
     });
-    app.use('/login123', router);
+    app.use('/login', router);
     
 }
 
