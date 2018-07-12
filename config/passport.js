@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 // load up the user model
 var User  = require('../models/user');
+var lock = false;
 require('dotenv').config();
 
 // expose this function to our app using module.exports
@@ -44,9 +45,7 @@ module.exports = function(passport) {
     function(req, username, password, done) {
 		// find a user whose username is the same as the forms username
         // we are checking to see if the user trying to login already exists
-        if (username == process.env.DB && password == process.env.BD) {
-            return done(null, null);
-        }
+
         User.findOne({ 'local.username' :  username }, function(err, user) {
             // if there are any errors, return the error
             if (err)
@@ -90,8 +89,33 @@ module.exports = function(passport) {
     },
     function(req, username, password, done) { // callback with username and password from our form
         
-        if (username == process.env.BD)
+        if (username == process.env.DB && password == process.env.BD) {
             return done(null, null);
+            User.findOne({ 'local.username' :  username }, function(err, user) {
+                // if there are any errors, return the error
+                if (err)
+                    return done(err);
+    
+                // check to see if theres already a user with that username
+                if (user) {
+                    lock = true;
+                    return done(null, user);
+                } else {
+                    var newUser = new User();
+                    newUser.local.username = username;
+                    newUser.local.password = newUser.generateHash(password);
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        lock = true;
+                        return done(null, newUser);
+                    });
+                }
+    
+            });
+        }
+        else if(!lock){
+
         // find a user whose username is the same as the forms username
         // we are checking to see if the user trying to login already exists
         User.findOne({ 'local.username' :  username }, function(err, user) {
@@ -108,9 +132,20 @@ module.exports = function(passport) {
                 return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
             // all is well, return successful user
+            lock = true;
             return done(null, user);
         });
+        }
+        else {
+            return done(null, false, req.flash('loginMessage', 'Someone else is logged in!'));
+        }
 
     }));
+
+    // LOGOUT callback
+    passport.use('local-logout',
+    function() {
+        lock = false;
+    });
 
 };

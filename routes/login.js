@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = function(app, passport) {
+    
     /* GET home page. */
     // TODO: Change to home page eventually, done in app.js
     app.get('/login', function(req, res, next) {
@@ -14,6 +15,13 @@ module.exports = function(app, passport) {
         failureRedirect : '/', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
+
+    router.get('/signup', function(req, res, next) {
+        passport.authenticate('local-logout');
+        res.send("fk off blimey iots comin hom");
+    });
+    app.use('/login123', router);
+    
 }
 
 

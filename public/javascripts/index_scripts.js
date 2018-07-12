@@ -27,6 +27,10 @@ $(function() {
     });
 });
 
+document.getElementById('logout').onclick = () => {
+    console.log("logged out");
+}
+
 rSlider.onchange = function(){
     rInput.value = rSlider.value;
     var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
@@ -99,6 +103,8 @@ setSliders = function() {
     $('#g-slider').val(arr[1]);
     $('#b-slider').val(arr[2]);
     $('#span1').css('color', save);
+    $('slider::-moz-range-thumb').css('background', save);
+    $('slider::-webkit-slider-thumb').css('background', save);
     aValue = arr[3];
 }
 var rgbHelper = function (rgb) { 
@@ -114,3 +120,4 @@ var rgbToHex = function(r,g,b) {
     var blue = rgbHelper(b);
     return red+green+blue;
   };
+

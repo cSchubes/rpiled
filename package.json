@@ -16,6 +16,7 @@
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
+    "jquery": "^3.3.1",
     "module-js": "^7.0.1",
     "mongodb": "^3.1.1",
     "mongoose": "^5.2.2",

@@ -15,10 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var coolRouter  = require('./routes/cool');
 var apiRouter   = require('./routes/api');
-
-
 var app = express();
-
 
 //connect to db
 mongoose.connect(process.env.DB_URL,function(err, db){ 
@@ -51,9 +48,10 @@ app.use('/users', usersRouter);
 app.use('/cool', coolRouter);
 app.use('/api', apiRouter);
 
+
 require('./config/passport')(passport);
-require('./routes/login')(app, passport);
 require('./routes/signup')(app, passport);
+require('./routes/login')(app, passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
