@@ -1,8 +1,8 @@
 // we will need this eventually to actually control the lights
-var ws281x = require('rpi-ws281x-native');
+// var ws281x = require('rpi-ws281x-native');
 var globals = require('./globals');
 
-ws281x.init(globals.NUM_LEDS);
+// ws281x.init(globals.NUM_LEDS);
 var pixelData = new Uint32Array(globals.NUM_LEDS);
 
 const gammaArr = [
