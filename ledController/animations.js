@@ -24,6 +24,7 @@ exports.rainbow = (req, res, next) => {
 
 exports.strandtest = (req, res, next) => {
     console.log('Starting strand test.');
+    console.log(globals.CURR_ANIMATION_PID);
     if (globals.CURR_ANIMATION_PID != -1) {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process');
