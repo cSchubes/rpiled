@@ -29,12 +29,12 @@ exports.strandtest = (req, res, next) => {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process');
     }
-    let child = execFile('python', [`${__dirname}/animations/strandtest.py`], (err, stdout, stderr) => {
+    /* let child = execFile('python', [`${__dirname}/animations/strandtest.py`], (err, stdout, stderr) => {
         console.log(err);
         console.log(stdout);
         console.log(stderr);
-    })
-    globals.CURR_ANIMATION_PID = child.pid;
+    }) */
+    // globals.CURR_ANIMATION_PID = child.pid;
     console.log(globals.CURR_ANIMATION_PID);
     res.status(200).json({
         data: {
