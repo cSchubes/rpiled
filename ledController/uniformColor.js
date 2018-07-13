@@ -53,6 +53,10 @@ function hexToRgb(hex) {
 
 exports.setColor = (req, res, next) => {
     console.log('Here is where we would change the color of the LEDs.');
+    if (globals.CURR_ANIMATION_PID != -1) {
+        process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
+        console.log('killed the old process' + globals.CURR_ANIMATION_PID);
+    }
     console.log(req.body)
     let r = gammaArr[req.body.r];
     let g = gammaArr[req.body.g];
@@ -82,6 +86,10 @@ exports.setColor = (req, res, next) => {
 
 exports.setBrightness = (req, res, next) => {
     console.log('Here is where we would change the brightness of the LEDs.');
+    if (globals.CURR_ANIMATION_PID != -1) {
+        process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
+        console.log('killed the old process' + globals.CURR_ANIMATION_PID);
+    }
     let newBrightness = parseInt(req.body.brightness);
     console.log(newBrightness);
     ws281x.setBrightness(newBrightness);
