@@ -16,4 +16,6 @@ router.post('/uniformColor/setBrightness', uniformController.setBrightness);
 
 router.post('/animations/strandtest', animations.strandtest);
 
+router.post('/animations/rainbow', animations.rainbow);
+
 module.exports = router;

@@ -24,6 +24,10 @@ document.getElementById('strandtest-btn').onclick = () => {
     postAnimation('strandtest');
 }
 
+document.getElementById('rainbow-btn').onclick = () => {
+    postAnimation('rainbow');
+}
+
 // Update slider+hex when moving color wheel
 $(function() {
     $('#color-input').on('slidermove', function() {
