@@ -1,5 +1,5 @@
 // animation handlers for the router
-const { spawn } = require('child_process');
+const { exec } = require('child_process');
 var globals = require('./globals');
 
 exports.rainbow = (req, res, next) => {
@@ -13,7 +13,12 @@ exports.rainbow = (req, res, next) => {
 
 exports.strandtest = (req, res, next) => {
     console.log('Starting strand test.');
-    globals.CURR_ANIMATION_PID = spawn('python', ['animations/strandtest.py']).pid
+    let child = exec(`python ${__dirname}/animations/strandtest.py`, (err, stdout, stderr) => {
+        console.log(err);
+        console.log(stdout);
+        console.log(stderr);
+    })
+    globals.CURR_ANIMATION_PID = child.pid;
     console.log(globals.CURR_ANIMATION_PID);
     res.status(200).json({
         data: {
