@@ -1,9 +1,9 @@
 // we will need this eventually to actually control the lights
 var ws281x = require('rpi-ws281x-native');
-var constants = require('./globals');
+var globals = require('./globals');
 
-ws281x.init(constants.NUM_LEDS);
-var pixelData = new Uint32Array(constants.NUM_LEDS);
+ws281x.init(globals.NUM_LEDS);
+var pixelData = new Uint32Array(globals.NUM_LEDS);
 
 const gammaArr = [
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -64,7 +64,7 @@ exports.setColor = (req, res, next) => {
     let b = gammaArr[req.body.b];
     console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
     let newColor = rgb2Int(req.body.r, Math.floor(req.body.g * .9), Math.floor(req.body.b * .75));
-    for (var i = 0; i < constants.NUM_LEDS; i++) {
+    for (var i = 0; i < globals.NUM_LEDS; i++) {
         pixelData[i] = newColor;
     };
     ws281x.render(pixelData);
