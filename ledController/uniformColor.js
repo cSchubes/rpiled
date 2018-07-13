@@ -56,6 +56,7 @@ exports.setColor = (req, res, next) => {
     if (globals.CURR_ANIMATION_PID != -1) {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process' + globals.CURR_ANIMATION_PID);
+        globals.CURR_ANIMATION_PID = -1;
     }
     console.log(req.body)
     let r = gammaArr[req.body.r];
@@ -89,6 +90,7 @@ exports.setBrightness = (req, res, next) => {
     if (globals.CURR_ANIMATION_PID != -1) {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process' + globals.CURR_ANIMATION_PID);
+        globals.CURR_ANIMATION_PID = -1;
     }
     let newBrightness = parseInt(req.body.brightness);
     console.log(newBrightness);
