@@ -18,11 +18,11 @@ def worldCup():
     for i in range(200, 250):
         strip.setPixelColor(i, 0xffffff)
     for i in range(250, 300):
-        strip.setPixelColor(i, 0xff0000)
+        strip.setPixelColor(i, 0x00ff00)
     for i in range(0, 150, 10):
         for j in range(i, i+5):
-            strip.setPixelColor(j, 0xff0000)
-    for i in range(5, 150, 10)
+            strip.setPixelColor(j, 0x00ff00)
+    for i in range(5, 150, 10):
         for j in range(i, i+5): 
             strip.setPixelColor(j, 0xffffff)
     strip.show()
