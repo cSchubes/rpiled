@@ -3,7 +3,7 @@ FROM resin/raspberry-pi-node:8
 ENV INITSYSTEM on
 
 RUN apt-get update \
-    && apt-get install make scons python-dev python-pip swig rpi.gpio gcc \
+    && apt-get install make scons python-dev python-pip swig rpi.gpio gcc
     #&& apt-get upgrade 
 #    && apt-get clean \
 # && rm -rf /var/lib/apt/lists/*
