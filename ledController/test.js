@@ -1,4 +1,5 @@
-const { spawn } = require('child_process')
+let constants = require('./constants');
 
-let child = spawn('python ../rpi_ws281x/python/examples/strandtest.py')
-console.log(child.pid)
+console.log(constants.CURR_ANIMATION_PID);
+constants.CURR_ANIMATION_PID = 10;
+console.log(constants.CURR_ANIMATION_PID);

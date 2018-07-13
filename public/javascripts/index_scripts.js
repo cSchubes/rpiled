@@ -20,6 +20,10 @@ document.getElementById('brightness-btn').onclick = () => {
     postBrightness(brightnessInput.value);
 }
 
+document.getElementById('strandtest-btn').onclick = () => {
+    postAnimation('strandtest');
+}
+
 // Update slider+hex when moving color wheel
 $(function() {
     $('#color-input').on('slidermove', function() {

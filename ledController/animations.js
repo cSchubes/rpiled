@@ -1,6 +1,23 @@
-// actual animation logic
-var ws281x = require('rpi-ws281x-native');
-var constants = require('./constants');
+// animation handlers for the router
+const { spawn } = require('child_process');
+var globals = require('./globals');
 
-ws281x.init(constants.NUM_LEDS);
-var pixelData = new Uint32Array(constants.NUM_LEDS);
+exports.rainbow = (req, res, next) => {
+    console.log('Starting rainbow animations.');
+    res.status(200).json({
+        data: {
+            message: 'Successfully started rainbow animation.'
+        }
+    });
+}
+
+exports.strandtest = (req, res, next) => {
+    console.log('Starting strand test.');
+    globals.CURR_ANIMATION_PID = spawn('python', ['animations/strandtest.py']).pid
+    console.log(globals.CURR_ANIMATION_PID);
+    res.status(200).json({
+        data: {
+            message: 'Successfully started strandtest.'
+        }
+    });
+}

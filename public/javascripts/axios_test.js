@@ -34,3 +34,13 @@ function postBrightness(b) {
       console.log(err);
     })
 }
+
+function postAnimation(animation) {
+  axios.post(`/api/animations/${animation}`)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
