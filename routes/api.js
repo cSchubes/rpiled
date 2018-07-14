@@ -5,7 +5,7 @@ var uniformController = require('../ledController/uniformColor');
 var animations = require('../ledController/animations');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   res.send('respond with a resource fcukcer');
 });
 

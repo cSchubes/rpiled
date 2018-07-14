@@ -5,6 +5,16 @@ append styles
     link(type="text/css" rel="stylesheet" href="stylesheets/wheelcolorpicker.dark.css")
     link(type="text/css" rel="stylesheet" href="stylesheets/style.css")
     link(href="stylesheets/cover.css", rel="stylesheet")
+    
+
+append scripts
+    script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
+    script(type="text/javascript" src="javascripts/modules/jquery.wheelcolorpicker.js")
+    script(src="javascripts/axios_test.js")
+    script(src="javascripts/index_scripts.js")
+    script(src="javascripts/login_scripts.js")
+    script(src="javascripts/modules/axios.min.js")
+    //script(src="https://unpkg.com/axios/dist/axios.min.js")
 
 append head
     title= title
@@ -17,21 +27,22 @@ append body
                 .cover-container
                     .masthead.clearfix
                         .inner
-                            //navbar + tabs
-                            h3.masthead-brand rpiled
                             nav
                                 ut.nav.masthead-nav
                                     li.active
                                         a(href="#") Home
                                     li
-                                        a(href="/cool") Features
+                                        a(href="/login") Features
+                                    li
+                                        a(href="/login" id="logout") Log Out
                         .inner.cover
-                            h1.cover-heading rpiled
+                            h1.cover-heading RPI
+                                span(style="color: #70e0fe;" id="span1") LED
                             container(align="center")
                                 div(class="row" align="center" id="main")
                                     //colorwheel
                                     input(data-wheelcolorpicker id="color-input" data-wcp-layout="block" data-wcp-autoResize="false" type="text")
-                                    // hex pickter
+                                    // hex picker
                                     div(class="row" align="center" )
                                         label(class="label") Hex:
                                         input(type="text" id="event-color" value="ffffff")
@@ -60,35 +71,11 @@ append body
                                         div(class="row-col" id="rc-slider")
                                             div(id="slider-wrapper")
                                                 input(type="range" class="slider" id="b-slider" min="0" max="255" value="255" )
-                                    div(class="row" align ="center" id="rgbdiv")
-                                        div(class="row-col" id="rc-input")
-                                            label(class ="label" id="rgb-input") Brightness:
-                                            input(type="text" class="rgb-color" id="brightness-input" value="255")
-                                        div(class="row-col" id="rc-slider")
-                                            div(id="slider-wrapper")
-                                                input(type="range" class="slider" id="brightness-slider" min="0" max="255" value="255" )
-                                        +btn("Submit Brightness")(id="brightness-btn")
-                                    +btn("Start strandtest")(id="strandtest-btn")
-                                    +btn("Start rainbow")(id="rainbow-btn")
-                                        
-                                    //Javascript to set slider input values
-                                    //TODO: Move to it's own JS file(if possible)
-                                    //script.
-                                        $(function() {
-                                            $('#color-input').on('slidermove', function() {
-                                                $('#event-color').val($("#color-input").wheelColorPicker('getValue', 'hex'));
-                                                var rgb = $("#color-input").wheelColorPicker('getValue', 'rgb');
-                                                var arr = rgb.split(" ")
-                                                $('#R-color').val(arr[0]);
-                                                $('#G-color').val(arr[1]);
-                                                $('#B-color').val(arr[2]);
-                                            });
-                                        });
+                                    div(class="row" align="center" id="rgbdiv")
+                                        div(class="row-col" id="cblabel")
+                                            label(for="checkbox" id="checkboxLabel") Dynamic Update:
+                                        div(class="row-col" id="cb")    
+                                            input(type="checkbox" name="checkboxname" value="value" id="check-id")
+
+                                    
                 
-append scripts
-    script(type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js")
-    script(type="text/javascript" src="javascripts/modules/jquery.wheelcolorpicker.js")
-    script(src="javascripts/axios_test.js")
-    script(src="javascripts/index_scripts.js")
-    script(src="javascripts/modules/axios.min.js")
-    //script(src="https://unpkg.com/axios/dist/axios.min.js")

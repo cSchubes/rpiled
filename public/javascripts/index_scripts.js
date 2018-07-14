@@ -6,7 +6,8 @@ var gInput = document.getElementById("G-color");
 var bSlider = document.getElementById('b-slider');
 var bInput = document.getElementById("B-color");
 var hexInput = document.getElementById("event-color");
-var brightnessInput = document.getElementById("brightness-input");
+var aValue = 1;
+
 
 // Update color wheel based on hex input
 document.getElementById('hex-btn').onclick = () => {
@@ -32,61 +33,67 @@ document.getElementById('rainbow-btn').onclick = () => {
 $(function() {
     $('#color-input').on('slidermove', function() {
         setSliders();
-        // performPostRequest(rInput.value, gInput.value, bInput.value);
+        if ($('#check-id:checked').val() !== undefined) {
+            performPostRequest(rInput.value, gInput.value, bInput.value);
+        }
     });
 });
 
+document.getElementById('logout').onclick = () => {
+    console.log("logged out");
+}
+
 rSlider.onchange = function(){
     rInput.value = rSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 rSlider.oninput = function(){
     rInput.value = rSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 rInput.onchange = function() {
     rSlider.value = rInput.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 gSlider.onchange = function(){
     gInput.value = gSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 gSlider.oninput = function(){
     gInput.value = gSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 gInput.onchange = function() {
     gSlider.value = gInput.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 bSlider.onchange = function(){
     bInput.value = bSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 bSlider.oninput = function(){
     bInput.value = bSlider.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
 bInput.onchange = function() {
     bSlider.value = bInput.value;
-    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+",1)"
+    var co = "rgba("+rInput.value+","+gInput.value+","+bInput.value+"," + aValue +")";
     $('#color-input').wheelColorPicker('setValue', co);
     hexInput.value = rgbToHex(rInput.value, gInput.value, bInput.value);
 }
@@ -95,14 +102,22 @@ bInput.onchange = function() {
 
 setSliders = function() {
     $('#event-color').val($("#color-input").wheelColorPicker('getValue', 'hex'));
-    var rgb = $("#color-input").wheelColorPicker('getValue', 'rgb');
-    var arr = rgb.split(" ")
+    var rgb = $("#color-input").wheelColorPicker('getValue', 'rgba');
+    var save = rgb;
+    rgb = rgb.substring(5,rgb.length-1)
+    console.log(rgb);
+    var arr = rgb.split(",");
+    console.log(arr);
     $('#R-color').val(arr[0]);
     $('#G-color').val(arr[1]);
     $('#B-color').val(arr[2]);
     $('#r-slider').val(arr[0]);
     $('#g-slider').val(arr[1]);
     $('#b-slider').val(arr[2]);
+    $('#span1').css('color', save);
+    $('slider::-moz-range-thumb').css('background', save);
+    $('slider::-webkit-slider-thumb').css('background', save);
+    aValue = arr[3];
 }
 var rgbHelper = function (rgb) { 
     var hex = Number(rgb).toString(16);
@@ -117,3 +132,4 @@ var rgbToHex = function(r,g,b) {
     var blue = rgbHelper(b);
     return red+green+blue;
   };
+
