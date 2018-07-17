@@ -17,17 +17,17 @@ document.getElementById('hex-btn').onclick = () => {
     performPostRequest(rInput.value, gInput.value, bInput.value);
 };
 
-document.getElementById('brightness-btn').onclick = () => {
+/* document.getElementById('brightness-btn').onclick = () => {
     postBrightness(brightnessInput.value);
-}
+} */
 
-document.getElementById('strandtest-btn').onclick = () => {
+/* document.getElementById('strandtest-btn').onclick = () => {
     postAnimation('strandtest');
-}
+} */
 
-document.getElementById('rainbow-btn').onclick = () => {
+/* document.getElementById('rainbow-btn').onclick = () => {
     postAnimation('rainbow');
-}
+} */
 
 // Update slider+hex when moving color wheel
 $(function() {

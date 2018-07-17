@@ -26,8 +26,7 @@
     "passport-local": "^1.0.0",
     "passport-strategy": "^1.0.0",
     "pug": "2.0.0-beta11",
-    "rpi-ws281x-native": "*",
-    "sleep": "^5.1.1"
+    "rpi-ws281x-native": "*"
   },
   "devDependencies": {
     "commitizen": "^2.10.1",

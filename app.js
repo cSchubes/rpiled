@@ -18,10 +18,10 @@ var apiRouter   = require('./routes/api');
 var app = express();
 
 //connect to db
-mongoose.connect(process.env.DB_URL,function(err, db){ 
+/*mongoose.connect(process.env.DB_URL,function(err, db){ 
   useNewUrlParser: true
   console.log("database connected!");
-});
+});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
