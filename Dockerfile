@@ -3,12 +3,12 @@ FROM resin/raspberry-pi-node:latest
 ENV INITSYSTEM on
 
 RUN apt-get update \
-    && apt-get install make scons python-dev python-pip swig rpi.gpio gcc
+    && apt-get install make scons python3-dev python3-pip swig rpi.gpio gcc
     #&& apt-get upgrade 
 #    && apt-get clean \
 # && rm -rf /var/lib/apt/lists/*
 
-RUN python -m pip install --upgrade pip setuptools wheel RPi.Gpio
+RUN python3 -m pip install --upgrade pip setuptools wheel RPi.Gpio
 
 WORKDIR /usr/src/app
 
