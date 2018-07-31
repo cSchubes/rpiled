@@ -33,6 +33,6 @@ if __name__ == '__main__':
     print(args)
 
     try:
-        set_color(Color(args.color.green, args.color.red, args.color.blue))
+        set_color(Color(args.color[1], args.color[0], args.color[2]))
     except KeyboardInterrupt:
         print('lmao')
