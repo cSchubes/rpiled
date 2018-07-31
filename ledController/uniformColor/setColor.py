@@ -27,11 +27,12 @@ if __name__ == '__main__':
     strip.begin()
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--color', type=int, required=True, nargs=3, help='the color to display in hexadecimal')
+    parser.add_argument('-c', '--color', type=int, required=True, nargs=3, help='the color to display in hexadecimal', metavar=('RED', 'GREEN', 'BLUE'))
     args = parser.parse_args()
+    red, green, blue = args.rename
     print(args)
 
     try:
-        set_color(Color(args.color[0], args.color[1], args.color[2]))
+        set_color(Color(green, red, blue))
     except KeyboardInterrupt:
         print('lmao')
