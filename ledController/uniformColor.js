@@ -80,7 +80,7 @@ exports.setColor = async (req, res, next) => {
         return resolve();
       })
     })
-    res.status(200).json({
+    res.status(globals.HTTP_CODES.Ok).json({
       originalRGB: {
         r: req.body.r,
         g: req.body.g,
@@ -94,7 +94,7 @@ exports.setColor = async (req, res, next) => {
       message: 'Successfully changed color.'
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(globals.HTTP_CODES.InternalServerError).json({
       error: 'Unable to change color.'
     })
   }
