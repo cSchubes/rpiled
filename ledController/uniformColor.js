@@ -1,9 +1,10 @@
 // we will need this eventually to actually control the lights
-var ws281x = require('rpi-ws281x-native');
+// var ws281x = require('rpi-ws281x-native');
+const { execFile } = require('child_process');
 var globals = require('./globals');
 
-ws281x.init(globals.NUM_LEDS);
-var pixelData = new Uint32Array(globals.NUM_LEDS);
+/* ws281x.init(globals.NUM_LEDS);
+var pixelData = new Uint32Array(globals.NUM_LEDS); */
 
 const gammaArr = [
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -51,41 +52,55 @@ function hexToRgb(hex) {
     } : null;
 }
 
-exports.setColor = (req, res, next) => {
-    console.log('Here is where we would change the color of the LEDs.');
-    if (globals.CURR_ANIMATION_PID != -1) {
-        process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
-        console.log('killed the old process' + globals.CURR_ANIMATION_PID);
-        globals.CURR_ANIMATION_PID = -1;
-    }
-    console.log(req.body)
-    let r = gammaArr[req.body.r];
-    let g = gammaArr[req.body.g];
-    let b = gammaArr[req.body.b];
-    console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
-    let newColor = rgb2Int(req.body.r, Math.floor(req.body.g * .9), Math.floor(req.body.b * .75));
-    for (var i = 0; i < globals.NUM_LEDS; i++) {
-        pixelData[i] = newColor;
-    };
-    ws281x.render(pixelData);
-    res.status(200).json({
-        data: {
-            originalRGB: {
-                r: req.body.r,
-                g: req.body.g,
-                b: req.body.b
-            },
-            correctedRGB: {
-                r: r,
-                g: g,
-                b: b
-            },
-            message: 'Successfully changed color.'
+exports.setColor = async (req, res, next) => {
+  console.log('Here is where we would change the color of the LEDs.');
+  if (globals.CURR_ANIMATION_PID != -1) {
+      process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
+      console.log('killed the old process' + globals.CURR_ANIMATION_PID);
+      globals.CURR_ANIMATION_PID = -1;
+  }
+  console.log(req.body)
+  let r = gammaArr[req.body.r];
+  let g = gammaArr[req.body.g];
+  let b = gammaArr[req.body.b];
+  console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
+  // let newColor = rgb2Int(req.body.r, Math.floor(req.body.g * .9), Math.floor(req.body.b * .75));
+/*   for (var i = 0; i < globals.NUM_LEDS; i++) {
+      pixelData[i] = newColor;
+  }; */
+  // ws281x.render(pixelData);
+  try {
+    await new Promise((resolve, reject) => {
+      execFile('python', [`${__dirname}/uniformColor/setColor.py`, '--color', `${r}`, `${g}`, `${b}`], (err, stdout, stderr) => {
+        if (err) {
+          console.log(err);
+          console.log(stderr);
+          return reject(err);
         }
+        return resolve();
+      })
+    })
+    res.status(200).json({
+      originalRGB: {
+        r: req.body.r,
+        g: req.body.g,
+        b: req.body.b
+      },
+      correctedRGB: {
+        r: r,
+        g: g,
+        b: b
+      },
+      message: 'Successfully changed color.'
     });
+  } catch (err) {
+    res.status(500).json({
+      error: 'Unable to change color.'
+    })
+  }
 };
 
-exports.setBrightness = (req, res, next) => {
+/* exports.setBrightness = (req, res, next) => {
     console.log('Here is where we would change the brightness of the LEDs.');
     if (globals.CURR_ANIMATION_PID != -1) {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
@@ -101,4 +116,4 @@ exports.setBrightness = (req, res, next) => {
             message: `Successfully changed brightness to: ${newBrightness}`
         }
     });
-};
+}; */

@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
 /* Post new color to LED */
 router.post('/uniformColor/setColor', uniformController.setColor);
 
-router.post('/uniformColor/setBrightness', uniformController.setBrightness);
+// router.post('/uniformColor/setBrightness', uniformController.setBrightness);
 
 router.post('/animations/strandtest', animations.strandtest);
 

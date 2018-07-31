@@ -36,10 +36,10 @@ app.use(morgan('dev')); // log every request to the console
 
 
 app.use(cookieParser());
-app.use(session({ secret: process.env.SECRET_KEY}));
-app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash());
+// app.use(session({ secret: process.env.SECRET_KEY}));
+// app.use(passport.initialize());
+/* app.use(passport.session()); // persistent login sessions
+app.use(flash()); */
 
 // Send routers to app
 app.use('/', indexRouter);
@@ -49,9 +49,9 @@ app.use('/cool', coolRouter);
 app.use('/api', apiRouter);
 
 
-require('./config/passport')(passport);
+/* require('./config/passport')(passport);
 require('./routes/signup')(app, passport);
-require('./routes/login')(app, passport);
+require('./routes/login')(app, passport) */;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

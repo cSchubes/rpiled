@@ -10,11 +10,15 @@ var aValue = 1;
 
 
 // Update color wheel based on hex input
-document.getElementById('hex-btn').onclick = () => {
+document.getElementById('hex-btn').onclick = async () => {
     console.log($('#event-color').val());
     $('#color-input').wheelColorPicker('setValue', hexInput.value);
     setSliders();
-    performPostRequest(rInput.value, gInput.value, bInput.value);
+    const response = await performPostRequest(rInput.value, gInput.value, bInput.value)
+      .catch((err) => {
+        console.log(err);
+      })
+    console.log(response);
 };
 
 /* document.getElementById('brightness-btn').onclick = () => {
@@ -105,9 +109,7 @@ setSliders = function() {
     var rgb = $("#color-input").wheelColorPicker('getValue', 'rgba');
     var save = rgb;
     rgb = rgb.substring(5,rgb.length-1)
-    console.log(rgb);
     var arr = rgb.split(",");
-    console.log(arr);
     $('#R-color').val(arr[0]);
     $('#G-color').val(arr[1]);
     $('#B-color').val(arr[2]);
@@ -115,8 +117,8 @@ setSliders = function() {
     $('#g-slider').val(arr[1]);
     $('#b-slider').val(arr[2]);
     $('#span1').css('color', save);
-    $('slider::-moz-range-thumb').css('background', save);
-    $('slider::-webkit-slider-thumb').css('background', save);
+    // $('slider::-moz-range-thumb').css('background', save);
+    // $('slider::-webkit-slider-thumb').css('background', save);
     aValue = arr[3];
 }
 var rgbHelper = function (rgb) { 

@@ -14,15 +14,14 @@ function performGetRequest1() {
        });   
 }
 
-function performPostRequest(r, g, b) {
-    axios.post(`/api/uniformColor/setColor`, { r, g, b })
-      .then(function (response) {
+async function performPostRequest(r, g, b) {
+    return await axios.post(`/api/uniformColor/setColor`, { r, g, b })
+/*       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
-      });
-    
+      }); */
 }
 
 function postBrightness(b) {

@@ -1,8 +1,10 @@
-from constants import *
 import time
-from neopixel import *
 import signal
 import sys
+import os
+from neopixel import *
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from constants import *
 
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 

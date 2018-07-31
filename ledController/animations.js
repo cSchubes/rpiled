@@ -14,7 +14,6 @@ exports.rainbow = (req, res, next) => {
         console.log(stderr);
     })
     globals.CURR_ANIMATION_PID = child.pid;
-    console.log(globals.CURR_ANIMATION_PID);
     res.status(200).json({
         data: {
             message: 'Successfully started rainbow animation.'
@@ -24,7 +23,6 @@ exports.rainbow = (req, res, next) => {
 
 exports.strandtest = (req, res, next) => {
     console.log('Starting strand test.');
-    console.log(globals.CURR_ANIMATION_PID);
     if (globals.CURR_ANIMATION_PID != -1) {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process');
@@ -35,7 +33,6 @@ exports.strandtest = (req, res, next) => {
         console.log(stderr);
     })
     globals.CURR_ANIMATION_PID = child.pid;
-    console.log(globals.CURR_ANIMATION_PID);
     res.status(200).json({
         data: {
             message: 'Successfully started strandtest.'
