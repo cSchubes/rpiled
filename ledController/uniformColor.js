@@ -71,7 +71,7 @@ exports.setColor = async (req, res, next) => {
   // ws281x.render(pixelData);
   try {
     await new Promise((resolve, reject) => {
-      execFile('python', [`${__dirname}/uniformColor/setColor.py`, '--color', `${r}`, `${g}`, `${b}`], (err, stdout, stderr) => {
+      execFile('python3', [`${__dirname}/uniformColor/setColor.py`, '--color', `${r}`, `${g}`, `${b}`], (err, stdout, stderr) => {
         if (err) {
           console.log(err);
           console.log(stderr);
