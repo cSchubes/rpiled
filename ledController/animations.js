@@ -8,7 +8,7 @@ exports.rainbow = (req, res, next) => {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process' + globals.CURR_ANIMATION_PID);
     }
-    let child = execFile('python', [`${__dirname}/animations/rainbow.py`], (err, stdout, stderr) => {
+    let child = execFile('python3', [`${__dirname}/animations/rainbow.py`], (err, stdout, stderr) => {
         console.log(err);
         console.log(stdout);
         console.log(stderr);
@@ -27,7 +27,7 @@ exports.strandtest = (req, res, next) => {
         process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
         console.log('killed the old process');
     }
-    let child = execFile('python', [`${__dirname}/animations/strandtest.py`], (err, stdout, stderr) => {
+    let child = execFile('python3', [`${__dirname}/animations/strandtest.py`], (err, stdout, stderr) => {
         console.log(err);
         console.log(stdout);
         console.log(stderr);
