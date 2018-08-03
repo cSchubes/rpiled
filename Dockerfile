@@ -32,4 +32,4 @@ COPY app.js .
 
 # RUN rmmod snd_bcm2835
 
-CMD ["bash"]
+CMD ["node", "bin/www"]
