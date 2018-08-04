@@ -1,14 +1,13 @@
-# TODO BEFORE YOU RUN
-- Install MongoDB
-- Create a ".env" file and set SECRET_KEY and DB_NAME
+# RPILED
+Nodejs web application for LED strip control on a Raspberry Pi running resinOS. 
 
-# Current Features
+## Current Features
 - Index page
     1. Color Wheel + Brightness slider
     2. RBG + Hex Value Fields
         -Properly update on change/submit
 
-# Features to Implement
+## Features to Implement
 - Updating input fields
     1. Snap to white on color wheel (data-wcp-snap="true")
 
@@ -22,10 +21,7 @@
 - Hardware
     1. Accurate color rendition on the lights
 
-# API Call Structure
-POST with param *color* set to a 6 digit hex string
-
-# Front-End TODO
+## Front-End TODO
 - Update UI/UX
     - Currently looks fine on desktop, however mobile site is sloppy-- for unknown reasons
     - Probably will rebuild UI from scratch/diff template at later date
