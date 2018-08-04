@@ -14,7 +14,7 @@ WORKDIR /usr/src/app
 
 COPY package.json .
 
-RUN npm install --production
+RUN npm install --only=production
 
 RUN git clone https://github.com/jgarff/rpi_ws281x.git
 WORKDIR rpi_ws281x/
