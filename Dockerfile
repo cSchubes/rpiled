@@ -3,7 +3,7 @@ FROM resin/raspberry-pi-node:latest
 ENV INITSYSTEM on
 
 RUN apt-get update \
-    && apt-get install make scons python3-dev python3-pip swig rpi.gpio gcc
+    && apt-get install make scons python3-dev python3-pip swig rpi.gpio gcc git
     #&& apt-get upgrade 
 #    && apt-get clean \
 # && rm -rf /var/lib/apt/lists/*
@@ -16,7 +16,7 @@ COPY package.json .
 
 RUN npm install
 
-ADD rpi_ws281x/ ./rpi_ws281x
+RUN git clone https://github.com/jgarff/rpi_ws281x.git
 WORKDIR rpi_ws281x/
 RUN scons && cd python/ && python3 ./setup.py build && python3 ./setup.py install
 
