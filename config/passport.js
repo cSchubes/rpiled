@@ -1,9 +1,14 @@
 // config/passport.js
-// Modified version of: https://github.com/scotch-io/easy-node-authentication/blob/local/config/passport.js
-
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
-
+var knex = require('knex')({
+    client: 'sqlite3',
+    useNullAsDefault: true,
+    connection: {
+      filename: './db/dev.sqlite3'
+    }
+  });
+var bcrypt = require('bcrypt')
 // load up the user model
 var User  = require('../models/user');
 var lock = false;
@@ -20,14 +25,16 @@ module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
-        done(null, user.id);
+        done(null, user);
     });
 
     // used to deserialize the user
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
+        knex.select('id').from('users').where('id', id).then(function(row) {
+            if (row.length == 0) return done(null, false);
+            return done(null, row[0]);
         });
+
     });
 
  	// =========================================================================
@@ -45,33 +52,26 @@ module.exports = function(passport) {
     function(req, username, password, done) {
 		// find a user whose username is the same as the forms username
         // we are checking to see if the user trying to login already exists
-
-        User.findOne({ 'local.username' :  username }, function(err, user) {
-            // if there are any errors, return the error
-            if (err)
-                return done(err);
-
-            // check to see if theres already a user with that username
-            if (user) {
-                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
-            } else {
-				        // if there is no user with that username
-                // create the user
-                var newUser = new User();
-
-                // set the user's local credentials
-                newUser.local.username = username;
-                newUser.local.password = newUser.generateHash(password); // use the generateHash function in our user model
-
-				// save the user
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                    return done(null, newUser);
+        knex.select('username').from('users').where('username', username).then(function(resp) {
+            console.log(resp)
+            if (resp.length == 0) {
+                var hashPW = null
+                bcrypt.hash(password, process.env.SALT, function(err, hash) {
+                    // Store hash in your password DB.
+                    hashPW = hash;
                 });
-            }
+                knex.insert('id', {username: username}, {password: hashPW}, {type: "USER"}).into('users')
+                var newUser = new User()
+                newUser.username = username;
+                newUser.passport = hashPW;
+                return done(null, newUser);
 
+            } else {
+                return done(null, false, req.flash('signupMessage', 'Username has been taken.'));
+            }
+           
         });
+        return null;
 
     }));
 
@@ -88,57 +88,24 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) { // callback with username and password from our form
-        
-        if (username == process.env.DB && password == process.env.BD) {
-            return done(null, null);
-            User.findOne({ 'local.username' :  username }, function(err, user) {
-                // if there are any errors, return the error
-                if (err)
-                    return done(err);
-    
-                // check to see if theres already a user with that username
-                if (user) {
-                    lock = true;
-                    return done(null, user);
-                } else {
-                    var newUser = new User();
-                    newUser.local.username = username;
-                    newUser.local.password = newUser.generateHash(password);
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-                        lock = true;
-                        return done(null, newUser);
-                    });
-                }
-    
-            });
-        }
-        else if(!lock){
-
-        // find a user whose username is the same as the forms username
-        // we are checking to see if the user trying to login already exists
-        User.findOne({ 'local.username' :  username }, function(err, user) {
-            // if there are any errors, return the error before anything else
-            if (err)
-                return done(err);
-            
-            // if no user is found, return the message
-            if (!user)
-                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-
-            // if the user is found but the password is wrong
-            if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-
-            // all is well, return successful user
-            lock = true;
-            return done(null, user);
+        var hashPW = null
+        bcrypt.hash(password, process.env.SALT, function(err, hash) {
+            // Store hash in your password DB.
+            hashPW = hash;
         });
-        }
-        else {
-            return done(null, false, req.flash('loginMessage', 'Someone else is logged in!'));
-        }
+
+        knex.select('username').from('users').where({
+            username: username,
+            password: 'test1'
+          }).then(function(user) {
+            console.log(user)
+            if (user.length == 0) {
+                return done(null, false, req.flash('loginMessage', 'Login Failed! Invalid Credentials or someone else may be logged in!'));
+            } else {
+                lock = true;
+                return done(null, user[0]);
+            }
+          });
 
     }));
 

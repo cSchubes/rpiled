@@ -7,11 +7,12 @@ router.get('/', function(req, res, next) {
 });
 
 function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on 
-  //if (req.isAuthenticated())
+  // if user is authenticated in the session, carry on
+  console.log(req)
+  if (req.isAuthenticated())
       return next();
 
   // if they aren't redirect them to the login page
-  // res.render('login', { title: 'login' });
+  //res.render('login', { title: 'login' });
 }
 module.exports = router;
