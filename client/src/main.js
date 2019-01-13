@@ -5,7 +5,6 @@ import router from './router'
 import vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import Verte from 'verte';
-import { Chrome } from  'vue-color'
 import './styles/verte.css';
 import '@mdi/font/css/materialdesignicons.css'
 Vue.config.productionTip = false
@@ -19,5 +18,5 @@ new Vue({
   router,
   components: {
     Verte,
-  },
+  }
 }).$mount('#app')
