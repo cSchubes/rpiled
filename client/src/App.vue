@@ -9,12 +9,10 @@
         <span class="font-weight-light">LED</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-      </v-btn>
+      <v-flex xs5>
+        <v-text-field prepend-icon='search' :clearable=true placeholder='Search..' v-if="currentTab==='Animations'">
+        </v-text-field>
+      </v-flex>
     </v-toolbar>
     
     <!-- <AppSidebar :visible="drawer"/> -->
@@ -46,6 +44,7 @@
         v-for="item in items"
         :key="item.title"
         :to="item.route"
+        @click="currentTab=item.title"
         >
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -82,7 +81,8 @@ export default {
         { title: 'Patterns', icon: 'texture', route: '/patterns'}
       ],
       mini: false,
-      right: null
+      right: null,
+      currentTab: 'Home'
     }
   }
 }
