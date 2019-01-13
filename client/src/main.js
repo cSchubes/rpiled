@@ -6,6 +6,7 @@ import vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import Verte from 'verte';
 import './styles/verte.css';
+import '@mdi/font/css/materialdesignicons.css'
 Vue.config.productionTip = false
 
 // register component globally

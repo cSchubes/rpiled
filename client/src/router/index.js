@@ -28,7 +28,12 @@ export default new Router({
     {
       path: '/animation',
       name: 'Animation',
-      component: Animation
+      component: Animation,
+      // children: [
+      //   {
+      //     path: ''
+      //   }
+      // ]
     }
     
   ]
