@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Posts from '@/components/Posts'
 import Color from '@/components/Color'
+import Animation from '@/components/animations/Layout'
 
 Vue.use(Router)
 
@@ -23,6 +24,12 @@ export default new Router({
       path: '/color',
       name: 'Color',
       component: Color
+    },
+    {
+      path: '/animation',
+      name: 'Animation',
+      component: Animation
     }
+    
   ]
 })
