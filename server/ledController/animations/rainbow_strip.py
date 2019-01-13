@@ -13,21 +13,25 @@ def signal_handler(sig, frame):
         strip.setPixelColor(i, 0)
     strip.show()
     sys.exit(0)
-    
-def worldCup():
-    for i in range(150, 200):
-        strip.setPixelColor(i, 0x0000ff)
-    for i in range(200, 250):
-        strip.setPixelColor(i, 0xffffff)
-    for i in range(250, 300):
-        strip.setPixelColor(i, 0x00ff00)
-    for i in range(0, 150, 10):
-        for j in range(i, i+5):
-            strip.setPixelColor(j, 0x00ff00)
-    for i in range(5, 150, 10):
-        for j in range(i, i+5): 
-            strip.setPixelColor(j, 0xffffff)
-    strip.show()
+
+def wheel(pos):
+    """Generate rainbow colors across 0-255 positions."""
+    if pos < 85:
+        return Color(pos * 3, 255 - pos * 3, 0)
+    elif pos < 170:
+        pos -= 85
+        return Color(255 - pos * 3, 0, pos * 3)
+    else:
+        pos -= 170
+        return Color(0, pos * 3, 255 - pos * 3)
+
+def rainbow(strip, wait_ms=20, iterations=1):
+    """Draw rainbow that uniformly distributes itself across all pixels."""
+    for j in range(256*iterations):
+        for i in range(strip.numPixels()):
+            strip.setPixelColor(i, wheel((i+j) & 255))
+        strip.show()
+        time.sleep(wait_ms/1000.0)
 
 if __name__ == '__main__':
     # Create NeoPixel object with appropriate configuration.
@@ -36,7 +40,8 @@ if __name__ == '__main__':
     strip.begin()
 
     try:
-        worldCup()
+        while True:
+            rainbow(strip)
 
     except KeyboardInterrupt:
         print('lmao')

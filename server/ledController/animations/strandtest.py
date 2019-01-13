@@ -6,10 +6,10 @@
 # various animations on a strip of NeoPixels.
 
 import time
-from neopixel import *
 import argparse
 import signal
 import sys
+from rpi_ws281x import *
 
 # LED strip configuration:
 LED_COUNT      = 300      # Number of LED pixels.
