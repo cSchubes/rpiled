@@ -5,10 +5,12 @@
       wrap
     >
       <v-flex mb-4>
-        <h1 class="display-2 font-weight-bold mb-3">
-          Single Color
-        </h1>
-        <verte picker='wheel' value='#040008' rgbSliders="true" model='hex'></verte>
+        <verte display='widget' picker='wheel' value='#040008' rgbSliders="true" model='hex'>
+            <svg viewBox="0 0 24 24">
+            <path d="M0 20h24v4H0z"/>
+            <path style="fill: #000" d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z"/>
+            </svg>
+        </verte>
       </v-flex>
     </v-layout>
   </v-container>

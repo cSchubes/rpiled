@@ -6,12 +6,11 @@ import vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import Verte from 'verte';
 import { Chrome } from  'vue-color'
-import '../node_modules/verte/dist/verte.css';
+import './styles/verte.css';
 Vue.config.productionTip = false
 
 // register component globally
 Vue.component('verte', Verte);
-Vue.component('chrome-picker', Chrome);
 
 Vue.use(vuetify)
 new Vue({
@@ -19,6 +18,5 @@ new Vue({
   router,
   components: {
     Verte,
-    Chrome
   },
 }).$mount('#app')
