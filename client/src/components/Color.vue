@@ -5,12 +5,52 @@
       wrap
     >
       <v-flex mb-4>
-        <verte display='widget' picker='wheel' value='#040008' rgbSliders="true" model='hex'>
-            <svg viewBox="0 0 24 24">
-            <path d="M0 20h24v4H0z"/>
-            <path style="fill: #000" d="M11 3L5.5 17h2.25l1.12-3h6.25l1.12 3h2.25L13 3h-2zm-1.38 9L12 5.67 14.38 12H9.62z"/>
-            </svg>
-        </verte>
+        <verte display='widget' value='#fef8e2' picker='wheel' model='hex' :rgbSliders="true" :recentColors='null' v-model="cVal"></verte>
+        <v-layout column class="light--text">
+            <v-flex xs4><button>Toggle Range</button></v-flex>
+            <v-flex xs4 v-if="rangeButton == false">
+                <v-flex
+          shrink
+          style="width: 60px"
+        >
+          <v-text-field
+            v-model="price[0]"
+            class="mt-0"
+            hide-details
+            single-line
+            type="number"
+          ></v-text-field>
+        </v-flex>
+  
+        <v-flex>
+          <v-range-slider
+            v-model="price"
+            maxWidth='100px'
+            :max="100"
+            :min="0"
+            :step="1"
+          ></v-range-slider>
+        </v-flex>
+  
+        <v-flex
+          shrink
+          style="width: 60px"
+        >
+          <v-text-field
+            v-model="price[1]"
+            class="mt-0"
+            hide-details
+            single-line
+            type="number"
+          ></v-text-field>
+        </v-flex>
+            </v-flex>
+            <v-flex xs4 v-else>
+                <v-slider v-model="slider" label="Label"></v-slider>
+            </v-flex>
+        </v-layout>
+        <br>
+        <v-btn large=true @click='submit("hi")' v-bind:style="{backgroundColor: cVal}">Submit</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
@@ -18,7 +58,26 @@
 
 <script>
 export default {
+    data: () => ({
+        cVal: '#fef8e2',
+        showAdv: false,
+        rangeButton: false,
+        slider: 50,
+        price: [0, 100]
+    }),
+    watch: {
+        cVal: function() {
 
+        }
+    },
+    methods: {
+        submit: function(message) {
+            alert(message)
+        },
+        change: function() {
+            console.log(this.cVal)
+        }
+    }
 }
 </script>
 
