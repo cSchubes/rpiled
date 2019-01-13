@@ -2,7 +2,7 @@ import time
 import signal
 import sys
 import os
-from neopixel import *
+from rpi_ws281x import *
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from constants import *
 

@@ -11,11 +11,11 @@ router.post('/', function(req, res, next) {
 
 /* Post new color to LED */
 router.post('/uniformColor/setColor', uniformController.setColor);
-
 // router.post('/uniformColor/setBrightness', uniformController.setBrightness);
 
+/* Post new animation to LEDs. */
 router.post('/animations/strandtest', animations.strandtest);
-
-router.post('/animations/rainbow', animations.rainbow);
+router.post('/animations/rainbowGrad', animations.rainbowGrad);
+router.post('/animations/rainbowStrip', animations.rainbowStrip);
 
 module.exports = router;
