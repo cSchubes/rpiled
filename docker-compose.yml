@@ -1,0 +1,12 @@
+version: '2'
+services:
+  frontend:
+    build: ./client
+    expose:
+      - "80"
+  backend:
+    build: ./server
+    privileged: true
+    network_mode: host
+    expose:
+      - "8081"

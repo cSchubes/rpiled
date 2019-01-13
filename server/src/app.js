@@ -12,8 +12,7 @@ const logger = require('morgan');
 require('dotenv').config();
 
 // load routers
-var indexRouter = require('../routes/index');
-var apiRouter   = require('../routes/api');
+var apiRouter   = require('./routes/api');
 
 // create app
 const app = express()
@@ -23,8 +22,6 @@ app.use(cors())
 app.use(cookieParser());
 
 // Send routers to app
-app.use('/', indexRouter);
-app.use('/index', indexRouter);
 app.use('/api', apiRouter);
 
 // tutorial route

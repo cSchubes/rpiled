@@ -2,9 +2,9 @@ import argparse
 import signal
 import sys
 import os
+from rpi_ws281x import *
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from constants import *
-from rpi_ws281x import *
 
 # Create NeoPixel object with appropriate configuration.
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
@@ -15,8 +15,9 @@ def signal_handler(sig, frame):
     strip.show()
     sys.exit(0)
 
-def set_color(color: int):
-    print(color)
+def set_color(color: int, brightness: int):
+    # print(color)
+    strip.setBrightness(brightness)
     for i in range(0, LED_COUNT):
         strip.setPixelColor(i, color)
     strip.show()
@@ -27,12 +28,13 @@ if __name__ == '__main__':
     strip.begin()
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('-c', '--color', type=int, required=True, nargs=3, help='the color to display in hexadecimal', metavar=('RED', 'GREEN', 'BLUE'))
+    parser.add_argument('-c', '--color', type=int, required=True, nargs=3, help='The color to display in RGB', metavar=('RED', 'GREEN', 'BLUE'))
+    parser.add_argument('-b', '--brightness', type=int, required=True, nargs=1, help='The brightness')
     args = parser.parse_args()
     # red, green, blue = args.rename
-    print(args)
+    # print(args)
 
     try:
-        set_color(Color(args.color[1], args.color[0], args.color[2]))
+        set_color(Color(args.color[1], args.color[0], args.color[2]), args.brightness)
     except KeyboardInterrupt:
         print('lmao')
