@@ -8,7 +8,14 @@
       <v-flex mb-4>
         <verte display='widget' value='#fef8e2' picker='wheel' model='hex' :rgbSliders="true" :recentColors='null' :enableAlpha='false' v-model="cVal"></verte>
       </v-flex>
-      <v-flex>
+      <v-flex v-if="advButton==false">
+          <button @click='advToggle()'> Show Advanced Options </button>
+      </v-flex>
+      <v-flex v-else>
+          <button @click='advToggle()'> Hide Advanced Options </button>
+      </v-flex>
+      <br>
+      <v-flex v-if='advButton == true'>
             <button @click='rangeToggle()'>Toggle Brightness Range</button>
             <v-layout align-center justify-center row fill-height v-if="rangeButton == true">
                 <v-flex shrink style="width: 40px">   
@@ -45,6 +52,7 @@
                         style="position: relative; right:18em;"
                     ></v-text-field>
                 </v-flex>
+
             </v-layout >
             <v-layout align-center justify-center row fill-height v-else style="position: relative; left: 28em">
                 <v-flex shrink style="width: 60px">   
@@ -61,9 +69,12 @@
                     <v-slider v-model="slider" style='width: 250px'></v-slider>
                 </v-flex>
             </v-layout>
-        <br>
-        <v-btn @click='submit("hi")' v-bind:style="{backgroundColor: cVal}">Submit</v-btn>
+
       </v-flex>
+    <br>
+    <v-flex>
+        <v-btn @click='submit("hi")' v-bind:style="{backgroundColor: cVal}">Submit</v-btn>
+    </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -72,7 +83,7 @@
 export default {
     data: () => ({
         cVal: '#fef8e2',
-        showAdv: false,
+        advButton: false,
         rangeButton: false,
         slider: 50,
         price: [0, 100]
@@ -91,6 +102,9 @@ export default {
         },
         rangeToggle: function() {
             this.rangeButton = !this.rangeButton;
+        },
+        advToggle: function() {
+            this.advButton = !this.advButton;
         }
     }
 }
