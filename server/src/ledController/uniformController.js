@@ -62,19 +62,17 @@ exports.setColor = async (req, res, next) => {
       })
     })
     res.status(globals.HTTP_CODES.Ok).json({
-      data: {
-        originalRGB: {
-          r: req.body.r,
-          g: req.body.g,
-          b: req.body.b
-        },
-        correctedRGB: {
-          r: r,
-          g: g,
-          b: b
-        },
-        message: 'Successfully changed color.'
-      }
+      originalRGB: {
+        r: req.body.r,
+        g: req.body.g,
+        b: req.body.b
+      },
+      correctedRGB: {
+        r: r,
+        g: g,
+        b: b
+      },
+      message: 'Successfully changed color.'
     });
   } catch (err) {
     res.status(globals.HTTP_CODES.InternalServerError).json({

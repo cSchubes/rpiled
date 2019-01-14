@@ -36,44 +36,50 @@ function startNewProcess(args) {
 
 /**** TESTING ANIMATIONS ****/
 
-exports.strandtest = async (req, res, next) => {
+exports.strandTest = async (req, res, next) => {
   console.log('Starting strand test...');
   killOldProcess();
   let args = [`${__dirname}/animations/strandtest.py`]
   let child = startNewProcess(args);
   console.log('Started Strand Test at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
-    data: {
-      message: 'Triggered Strand Test.'
-    }
+    message: 'Triggered Strand Test.'
   });
 }
 
 /**** RAINBOW ANIMATIONS ****/
 
-exports.rainbowGrad = async (req, res, next) => {
+exports.rainbowGradient = async (req, res, next) => {
   console.log('Starting rainbow gradient...');
   killOldProcess();
-  let args = [`${__dirname}/animations/rainbow_grad.py`]
+  let time = [];
+  if (req.body.time) {
+    time.push(req.body.time);
+  }
+  let args = [`${__dirname}/animations/rainbow_gradient.py`, '--time']
+  args = args.concat(time);
+  console.log(args);
   let child = startNewProcess(args);
   console.log('Started Rainbow Gradient at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
-    data: {
-      message: 'Triggered Rainbow Gradient.'
-    }
+    message: 'Triggered Rainbow Gradient.'
   });
 }
 
 exports.rainbowStrip = (req, res, next) => {
   console.log('Starting rainbow strip...')
   killOldProcess();
-  let args = [`${__dirname}/animations/rainbow_strip.py`]
+  let time = [];
+  if (req.body.time) {
+    time.push(req.body.time);
+  }
+  let args = [`${__dirname}/animations/rainbow_strip.py`, '--time']
+  args = args.concat(time);
+  console.log(args);
   let child = startNewProcess(args);
   console.log('Started Rainbow Strip at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
-    data: {
-      message: 'Triggered Rainbow Strip.'
-    }
+    message: 'Triggered Rainbow Strip.'
   });
 }
 
@@ -103,22 +109,20 @@ exports.theaterChase = (req, res, next) => {
   killOldProcess();
   // parse RGB colors into hex colors to feed to animation script
   let colors = [];
-  for (let i = 0; i < req.body.colors.length; i++) {
-    let r = globals.gammaArr[req.body.colors[i].r];
-    let g = globals.gammaArr[req.body.colors[i].g];
-    let b = globals.gammaArr[req.body.colors[i].b];
-    colors.push(rgb2Int(r, g, b));
+  if (req.body.colors) {
+    for (let i = 0; i < req.body.colors.length; i++) {
+      let r = globals.gammaArr[req.body.colors[i].r];
+      let g = globals.gammaArr[req.body.colors[i].g];
+      let b = globals.gammaArr[req.body.colors[i].b];
+      colors.push(rgb2Int(r, g, b));
+    }
   }
-  console.log(colors)
   let args = [`${__dirname}/animations/theater_chase.py`, '--colors']
   args = args.concat(colors);
-  console.log(args);
   // start process
   let child = startNewProcess(args);
   console.log('Started Theatre Chase at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
-    data: {
-      message: 'Triggered Theater Chase.'
-    }
+    message: 'Triggered Theater Chase.'
   });
 }

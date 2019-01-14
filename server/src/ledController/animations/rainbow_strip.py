@@ -2,10 +2,12 @@ import time
 import signal
 import sys
 import os
+import argparse
 from rpi_ws281x import *
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from constants import *
 
+# Create NeoPixel object with appropriate configuration.
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 
 def signal_handler(sig, frame):
@@ -34,14 +36,18 @@ def rainbow(strip, wait_ms=20, iterations=1):
         time.sleep(wait_ms/1000.0)
 
 if __name__ == '__main__':
-    # Create NeoPixel object with appropriate configuration.
+    # parse args
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t', '--time', type=int, nargs='1', default=[20], help='The wait time in ms for the animation.')
+    args = parser.parse_args()
+    # set up signal handler
     signal.signal(signal.SIGINT, signal_handler)
     # Intialize the library (must be called once before other functions).
     strip.begin()
 
     try:
         while True:
-            rainbow(strip)
+            rainbow(strip, wait_ms=args.time)
 
     except KeyboardInterrupt:
         print('lmao')

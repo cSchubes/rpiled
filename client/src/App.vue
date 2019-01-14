@@ -39,21 +39,42 @@
 
       <v-list class="pt-0" dense>
         <v-divider light></v-divider>
+        <template v-for="item in items">
+          <v-list-group
+            v-if="item.children"
+            no-action
+            :key="item.title"
+          >
+            <v-list-tile slot="activator">
+              <v-list-tile-action>
+                <v-icon medium>{{ item.icon }}</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile>
+            
+            <v-list-tile v-show="!mini" v-for="child in item.children" :key="child.title" :to="child.route" @click="currentTab=item.title">
+              <v-list-tile-title>{{ child.title }}</v-list-tile-title>
+              <v-list-tile-action>
+                <v-icon small>{{ child.icon }}</v-icon>
+              </v-list-tile-action> 
+            </v-list-tile>
+          </v-list-group>
 
-        <v-list-tile
-        v-for="item in items"
-        :key="item.title"
-        :to="item.route"
-        @click="currentTab=item.title"
-        >
-          <v-list-tile-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
+          <v-list-tile
+            v-else
+            :key="item.title"
+            :to="item.route"
+            @click="currentTab=item.title"
+          >
+            <v-list-tile-action>
+              <v-icon medium>{{ item.icon }}</v-icon>
+            </v-list-tile-action>
 
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
       </v-list>
     </v-navigation-drawer>
 
@@ -64,7 +85,29 @@
 </template>
 
 <script>
-// import AppSidebar from "@/components/app/AppSidebar";
+const LINKS = [
+  { title: 'Home', 
+    icon: 'home', 
+    route: '/' 
+  },
+  { title: 'Single Color', 
+    icon: 'color_lens',
+    route: '/color' 
+  },
+  { title: 'Animations', 
+    icon: 'cached',
+    route: '/animation',
+    children: [
+      { title: 'Templates', icon: 'mdi-file-document-box-multiple', route: '/animation/templates'},
+      { title: 'Saved', icon: 'bookmark', route: '/animation/saved'},
+      { title: 'Favorites', icon: 'mdi-heart', route: '/animation/favorites'}
+    ]
+  },
+  { title: 'Patterns', 
+    icon: 'texture', 
+    route: '/patterns'
+  }
+]
 
 export default {
   name: 'App',
@@ -74,12 +117,7 @@ export default {
   data () {
     return {
       drawer: null,
-      items: [
-        { title: 'Home', icon: 'home', route: '/color' },
-        { title: 'Single Color', icon: 'color_lens', route: '/advanced' },
-        { title: 'Animations', icon: 'cached', route: '/animation'},
-        { title: 'Patterns', icon: 'texture', route: '/patterns'}
-      ],
+      items: LINKS,
       mini: false,
       right: null,
       currentTab: 'Home'

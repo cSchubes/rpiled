@@ -2,3 +2,4 @@ npm-debug.log
 node_modules/
 .env
 __pycache__/
+*.db

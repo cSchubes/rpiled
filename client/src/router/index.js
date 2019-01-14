@@ -3,7 +3,9 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Posts from '@/components/Posts'
 import Color from '@/components/Color'
-import Animation from '@/components/animations/Layout'
+import AnimationLayout from '@/components/animations/Layout'
+import AnimationTemplates from '@/components/animations/Templates'
+import SavedAnimations from '@/components/animations/Saved'
 
 Vue.use(Router)
 
@@ -28,12 +30,19 @@ export default new Router({
     {
       path: '/animation',
       name: 'Animation',
-      component: Animation,
-      // children: [
-      //   {
-      //     path: ''
-      //   }
-      // ]
+      component: AnimationLayout,
+      children: [
+        {
+          path: 'templates',
+          name: 'Templates',
+          component: AnimationTemplates
+        },
+        {
+          path: 'saved',
+          name: 'Saved',
+          component: SavedAnimations
+        }
+      ]
     }
     
   ]

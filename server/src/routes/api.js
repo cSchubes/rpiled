@@ -1,20 +1,20 @@
-var express = require('express');
-var router = express.Router();
-var uniformController = require('../ledController/uniformController');
-var animationController = require('../ledController/animationController');
+const express = require('express');
+const router = express.Router();
+const uniformController = require('../ledController/uniformController');
+const animationRouter = require('./animationRouter');
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
   res.send('respond with a resource fcukcer');
 });
 
+/* Set up to use animation router. */
+router.use('/animations', animationRouter);
+
 /* Post new color to LEDs */
 router.post('/uniformColor/setColor', uniformController.setColor);
 
-/* Post new animation to LEDs. */
-router.post('/animations/strandtest', animationController.strandtest);
-router.post('/animations/rainbowGrad', animationController.rainbowGrad);
-router.post('/animations/rainbowStrip', animationController.rainbowStrip);
-router.post('/animations/theaterChase', animationController.theaterChase);
+/* Database getters. */
+router.get('/')
 
 module.exports = router;
