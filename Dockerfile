@@ -30,6 +30,8 @@ ADD seeds/ ./seeds
 ADD migrations/ ./migrations
 COPY knexfile.js .
 
+RUN npm install -g sqlite3 knex
+
 # RUN rmmod snd_bcm2835
 
 CMD ["node", "bin/www"]
