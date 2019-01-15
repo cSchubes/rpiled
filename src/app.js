@@ -56,7 +56,4 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
 });
 
-// set up to communicate with vue
-app.listen(process.env.PORT || 8081)
-
 module.exports = app;

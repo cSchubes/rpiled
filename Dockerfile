@@ -2,6 +2,8 @@ FROM resin/raspberry-pi-node:latest
 
 ENV INITSYSTEM on
 
+ENV STAGING production
+
 RUN apt-get update \
     && apt-get install make scons python3-dev python3-pip swig rpi.gpio gcc git
     #&& apt-get upgrade 
@@ -23,12 +25,10 @@ RUN scons && cd python/ && python3 ./setup.py build && python3 ./setup.py instal
 WORKDIR /usr/src/app
 
 ADD bin/ ./bin
-ADD public/ ./public
-ADD routes/ ./routes
-ADD views/ ./views
-ADD jade-bootstrap/ ./jade-bootstrap
-ADD ledController/ ./ledController
-COPY app.js .
+ADD src/ ./src
+ADD seeds/ ./seeds
+ADD migrations/ ./migrations
+COPY knexfile.js .
 
 # RUN rmmod snd_bcm2835
 

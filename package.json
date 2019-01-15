@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www 8081"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,9 @@
     "express": "^4.16.4",
     "knex": "^0.16.3",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.9",
     "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
   }
 }

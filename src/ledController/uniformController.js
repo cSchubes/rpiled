@@ -7,7 +7,7 @@
  */
 
 const { execFile } = require('child_process');
-var globals = require('./globals');
+var globals = require('../globals');
   
 var gamma   = 2; // Correction factor
 var max_in  = 255; // Top end of INPUT range

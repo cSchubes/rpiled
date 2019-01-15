@@ -7,10 +7,9 @@
  */
 
 const { execFile } = require('child_process');
-var globals = require('./globals');
+var globals = require('../globals');
 
-/**** HELPERS ****/
-
+/*************************** HELPERS *********************************************/
 function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
@@ -34,8 +33,7 @@ function startNewProcess(args) {
   return child;
 }
 
-/**** TESTING ANIMATIONS ****/
-
+/**************************** TESTING ANIMATIONS ***********************************/
 exports.strandTest = async (req, res, next) => {
   console.log('Starting strand test...');
   killOldProcess();
@@ -47,8 +45,7 @@ exports.strandTest = async (req, res, next) => {
   });
 }
 
-/**** RAINBOW ANIMATIONS ****/
-
+/**************************** RAINBOW ANIMATIONS **********************************/
 exports.rainbowGradient = async (req, res, next) => {
   console.log('Starting rainbow gradient...');
   killOldProcess();
@@ -58,7 +55,6 @@ exports.rainbowGradient = async (req, res, next) => {
   }
   let args = [`${__dirname}/animations/rainbow_gradient.py`, '--time']
   args = args.concat(time);
-  console.log(args);
   let child = startNewProcess(args);
   console.log('Started Rainbow Gradient at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
@@ -75,7 +71,6 @@ exports.rainbowStrip = (req, res, next) => {
   }
   let args = [`${__dirname}/animations/rainbow_strip.py`, '--time']
   args = args.concat(time);
-  console.log(args);
   let child = startNewProcess(args);
   console.log('Started Rainbow Strip at: ' + child.pid);
   res.status(globals.HTTP_CODES.Ok).json({
@@ -83,8 +78,7 @@ exports.rainbowStrip = (req, res, next) => {
   });
 }
 
-/**** CHOOSE COLOR(S) ****/
-
+/**************************** CHOOSE COLOR(S) *************************************/
 /**
  * Example post data for theater chase:
     body: {
