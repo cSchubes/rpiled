@@ -51,9 +51,10 @@ exports.rainbowGradient = async (req, res, next) => {
   killOldProcess();
   let time = [];
   if (req.body.time) {
+    time.push('--time');
     time.push(req.body.time);
   }
-  let args = [`${__dirname}/animations/rainbow_gradient.py`, '--time']
+  let args = [`${__dirname}/animations/rainbow_gradient.py`];
   args = args.concat(time);
   let child = startNewProcess(args);
   console.log('Started Rainbow Gradient at: ' + child.pid);
@@ -67,9 +68,10 @@ exports.rainbowStrip = (req, res, next) => {
   killOldProcess();
   let time = [];
   if (req.body.time) {
+    time.push('--time');
     time.push(req.body.time);
   }
-  let args = [`${__dirname}/animations/rainbow_strip.py`, '--time']
+  let args = [`${__dirname}/animations/rainbow_strip.py`];
   args = args.concat(time);
   let child = startNewProcess(args);
   console.log('Started Rainbow Strip at: ' + child.pid);
@@ -104,6 +106,7 @@ exports.theaterChase = (req, res, next) => {
   // parse RGB colors into hex colors to feed to animation script
   let colors = [];
   if (req.body.colors) {
+    colors.push('--time');
     for (let i = 0; i < req.body.colors.length; i++) {
       let r = globals.gammaArr[req.body.colors[i].r];
       let g = globals.gammaArr[req.body.colors[i].g];
@@ -111,7 +114,7 @@ exports.theaterChase = (req, res, next) => {
       colors.push(rgb2Int(r, g, b));
     }
   }
-  let args = [`${__dirname}/animations/theater_chase.py`, '--colors']
+  let args = [`${__dirname}/animations/theater_chase.py`];
   args = args.concat(colors);
   // start process
   let child = startNewProcess(args);
