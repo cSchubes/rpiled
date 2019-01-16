@@ -25,10 +25,10 @@ WORKDIR /usr/src/app
 
 ADD bin/ ./bin
 ADD src/ ./src
-COPY seeds/templates.js ./seeds
 ADD migrations/ ./migrations
 COPY knexfile.js .
 COPY start.sh .
+COPY seeds/templates.js ./seeds/
 
 # RUN rmmod snd_bcm2835
 
