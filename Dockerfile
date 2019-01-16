@@ -28,6 +28,7 @@ ADD src/ ./src
 ADD seeds/ ./seeds
 ADD migrations/ ./migrations
 COPY knexfile.js .
+COPY start.sh .
 
 # RUN npm install -g knex
 
