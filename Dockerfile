@@ -36,4 +36,4 @@ COPY start.sh .
 
 # RUN rmmod snd_bcm2835
 
-CMD ["bash", "start.sh"]
+CMD ["node", "bin/www"]
