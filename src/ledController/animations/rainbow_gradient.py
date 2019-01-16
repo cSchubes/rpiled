@@ -39,7 +39,7 @@ def rainbowCycle(strip, wait_ms=20, iterations=5):
 if __name__ == '__main__':
     # parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--time', type=int, nargs='1', default=[20], help='The wait time in ms for the animation.')
+    parser.add_argument('-t', '--time', type=int, default=20, help='The wait time in ms for the animation.')
     args = parser.parse_args()
 
     # set up signal handling

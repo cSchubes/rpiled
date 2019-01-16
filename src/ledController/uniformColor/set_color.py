@@ -29,12 +29,12 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--color', type=int, required=True, nargs=3, help='The color to display in RGB', metavar=('RED', 'GREEN', 'BLUE'))
-    parser.add_argument('-b', '--brightness', type=int, required=True, nargs=1, help='The brightness')
+    parser.add_argument('-b', '--brightness', type=int, required=True, help='The brightness')
     args = parser.parse_args()
     # red, green, blue = args.rename
     # print(args)
 
     try:
-        set_color(Color(args.color[1], args.color[0], args.color[2]), args.brightness)
+        set_color(Color(args.color[0], args.color[1], args.color[2]), args.brightness)
     except KeyboardInterrupt:
         print('lmao')

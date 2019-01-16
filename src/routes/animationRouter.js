@@ -3,7 +3,7 @@ const router = express.Router();
 const animationController = require('../ledController/animationController');
 const globals = require('../globals');
 var knexfile = require('../../knexfile');
-const stage = (process.env.STAING || 'development');
+const stage = (process.env.NODE_ENV || 'development');
 const knex = require('knex')(knexfile[stage]);
 
 /**** HELPERS ****/

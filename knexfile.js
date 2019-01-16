@@ -29,7 +29,7 @@ module.exports = {
   production: {
     client: 'sqlite3',
     connection: {
-      filename: './db/database.db'
+      filename: '/data/rpiled.database'
     },
     useNullAsDefault: true,
   }

@@ -31,14 +31,14 @@ def rainbow(strip, wait_ms=20, iterations=1):
     """Draw rainbow that uniformly distributes itself across all pixels."""
     for j in range(256*iterations):
         for i in range(strip.numPixels()):
-            strip.setPixelColor(i, wheel((i+j) & 255))
+            strip.setPixelColor(i, wheel((j) & 255))
         strip.show()
         time.sleep(wait_ms/1000.0)
 
 if __name__ == '__main__':
     # parse args
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--time', type=int, nargs='1', default=[20], help='The wait time in ms for the animation.')
+    parser.add_argument('-t', '--time', type=int, default=20, help='The wait time in ms for the animation.')
     args = parser.parse_args()
     # set up signal handler
     signal.signal(signal.SIGINT, signal_handler)
