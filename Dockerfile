@@ -31,8 +31,8 @@ COPY knexfile.js .
 
 # RUN npm install -g knex
 
-RUN node_modules/.bin/knex migrate:latest
+# RUN node_modules/.bin/knex migrate:latest
 
 # RUN rmmod snd_bcm2835
 
-CMD ["node", "bin/www"]
+CMD ["bash", "start.sh"]
