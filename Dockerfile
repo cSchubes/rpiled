@@ -25,7 +25,7 @@ WORKDIR /usr/src/app
 
 ADD bin/ ./bin
 ADD src/ ./src
-ADD seeds/templates.js ./seeds
+COPY seeds/templates.js ./seeds
 ADD migrations/ ./migrations
 COPY knexfile.js .
 COPY start.sh .
