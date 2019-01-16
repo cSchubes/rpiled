@@ -12,13 +12,15 @@ async function getAllAnimations(favs) {
   let animations = [];
   for (let i = 0; i<templates.length; i++) {
     let template = templates[i].name;
-    let anims;
-    if (favs) {
-      anims = await knex.from('Animations').innerJoin(template, 'Animations.id', `${template}.id`).where('favorite', 1);
-    } else {
-      anims = await knex.from('Animations').innerJoin(template, 'Animations.id', `${template}.id`);
+    if (template !== 'strandTest') {
+      let anims;
+      if (favs) {
+        anims = await knex.from('Animations').innerJoin(template, 'Animations.id', `${template}.id`).where('favorite', 1);
+      } else {
+        anims = await knex.from('Animations').innerJoin(template, 'Animations.id', `${template}.id`);
+      }
+      animations = animations.concat(anims);
     }
-    animations = animations.concat(anims);
   }
   return animations;
 }
@@ -65,6 +67,12 @@ router.post('/', async (req, res, next) => {
   res.status(globals.HTTP_CODES.Ok).json({
     message: "Successfully added animation to database."
   })
+})
+
+router.get('/templates', async (req, res, next) => {
+  let result = {};
+  result.templates = await knex.select().table('Templates');
+  res.status(globals.HTTP_CODES.Ok).send(result);
 })
 
 module.exports = router;

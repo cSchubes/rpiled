@@ -25,15 +25,11 @@ WORKDIR /usr/src/app
 
 ADD bin/ ./bin
 ADD src/ ./src
-ADD seeds/ ./seeds
+ADD seeds/templates.js ./seeds
 ADD migrations/ ./migrations
 COPY knexfile.js .
 COPY start.sh .
 
-# RUN npm install -g knex
-
-# RUN node_modules/.bin/knex migrate:latest
-
 # RUN rmmod snd_bcm2835
 
-CMD ["node", "bin/www"]
+CMD ["bash", "start.sh"]
