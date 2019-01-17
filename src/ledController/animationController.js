@@ -104,18 +104,22 @@ exports.theaterChase = (req, res, next) => {
   console.log('Starting Theatre Chase...');
   killOldProcess();
   // parse RGB colors into hex colors to feed to animation script
-  let colors = [];
+  let optionalArgs = [];
   if (req.body.colors) {
-    colors.push('--time');
+    optionalArgs.push('--colors');
     for (let i = 0; i < req.body.colors.length; i++) {
       let r = globals.gammaArr[req.body.colors[i].r];
       let g = globals.gammaArr[req.body.colors[i].g];
       let b = globals.gammaArr[req.body.colors[i].b];
-      colors.push(rgb2Int(r, g, b));
+      optionalArgs.push(rgb2Int(r, g, b));
     }
   }
+  if (req.body.time) {
+    optionalArgs.push('--time');
+    optionalArgs.push(req.body.time);
+  }
   let args = [`${__dirname}/animations/theater_chase.py`];
-  args = args.concat(colors);
+  args = args.concat(optionalArgs);
   // start process
   let child = startNewProcess(args);
   console.log('Started Theatre Chase at: ' + child.pid);

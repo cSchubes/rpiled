@@ -75,4 +75,14 @@ router.get('/templates', async (req, res, next) => {
   res.status(globals.HTTP_CODES.Ok).send(result);
 })
 
+router.post('/delete', async (req, res, next) => {
+  let id = req.body.id;
+  let template = req.body.template;
+  console.log(req.body);
+  let num = await knex.select('Animations').where('id', id).del();
+  let animNum = await knex.select(template).where('id', id).del();
+  console.log(num);
+  console.log(animNum);
+  res.status(globals.HTTP_CODES.Ok);
+})
 module.exports = router;
