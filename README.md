@@ -32,8 +32,10 @@ colors: N/A (yet)
 ### Animations
 
 `/animations/`
-GET
+GET (with query)
 POST
+PUT
+DELETE
 
 `/animations/templates`
-GET
+GET (with query)

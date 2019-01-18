@@ -30,6 +30,7 @@ if __name__ == '__main__':
     # parse arguments, default colors are B R G cycle
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--colors', type=int, nargs='*', default=[255, 16711680, 65280], help='The color(s) to display in hex')
+    parser.add_argument('-t', '--time', type=int, default=50, help='The wait time in ms for the animation.')
     args = parser.parse_args()
 
     # Set up kill signal handling
@@ -40,7 +41,7 @@ if __name__ == '__main__':
     try:
         while True:
             for c in args.colors:
-                theaterChase(strip, c)
+                theaterChase(strip, c, wait_ms=args.time)
 
     except KeyboardInterrupt:
         print('lmao')

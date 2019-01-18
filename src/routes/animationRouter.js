@@ -69,20 +69,57 @@ router.post('/', async (req, res, next) => {
   })
 })
 
+/**
+ * Update animation
+ */
+router.put('/', async (req, res, next) => {
+  let customTemplate = req.body.animation;
+  let animation = {};
+  // separate animation fields from template fields
+  for (let i = 0; i<globals.animationFields.length; i++) {
+    animation[globals.animationFields[i]] = customTemplate[globals.animationFields[i]];
+    delete customTemplate[globals.animationFields[i]];
+  }
+  // grab id and remove for use
+  let id = customTemplate.id;
+  delete customTemplate.id;
+  // update in Animations table
+  await knex('Animations').where('id', id).update(animation);
+  // update in template specific table
+  await knex(animation.template).where('id', id).update(customTemplate);
+  res.status(globals.HTTP_CODES.Ok).json({
+    message: "Successfully updated animation in database."
+  })
+})
+
+/**
+ * Update animation
+ */
+router.delete('/', async (req, res, next) => {
+  console.log(req.body);
+  let id = req.body.id;
+  let template = req.body.template;
+  let num = await knex('Animations').where('id', id).del();
+  let animNum = await knex(template).where('id', id).del();
+  // console.log(num);
+  // console.log(animNum);
+  res.status(globals.HTTP_CODES.Ok).json({
+    message: "Successfully deleted animation from database."
+  });
+})
+
+/**
+ */
 router.get('/templates', async (req, res, next) => {
+  let template = req.query.name;
   let result = {};
-  result.templates = await knex.select().table('Templates');
+  if (template) {
+    let temp = await knex.select().table('Templates').where('name', template);
+    result.template = temp[0];
+  } else {
+    result.templates = await knex.select().table('Templates');
+  }
   res.status(globals.HTTP_CODES.Ok).send(result);
 })
 
-router.post('/delete', async (req, res, next) => {
-  let id = req.body.id;
-  let template = req.body.template;
-  console.log(req.body);
-  let num = await knex.select('Animations').where('id', id).del();
-  let animNum = await knex.select(template).where('id', id).del();
-  console.log(num);
-  console.log(animNum);
-  res.status(globals.HTTP_CODES.Ok);
-})
 module.exports = router;
