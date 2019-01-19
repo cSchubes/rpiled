@@ -23,47 +23,29 @@ def fade_to_black(index, fadeValue):
     g = (oldColor & 0x0000ff00) >> 8
     b = (oldColor & 0x000000ff)
 
-    # r= (r<=10) ? 0 : (int) r-(r*fadeValue/256);
-    # g= (g<=10) ? 0 : (int) g-(g*fadeValue/256);
-    # b= (b<=10) ? 0 : (int) b-(b*fadeValue/256);
-    
     r = 0 if r <= 10 else int(r-(r*fadeValue/256))
     g = 0 if g <= 10 else int(g-(g*fadeValue/256))
     b = 0 if b <= 10 else int(b-(b*fadeValue/256))
     
     strip.setPixelColor(index, Color(r,g,b))
 
-def meteor(strip, color, meteor_size=10, decay=64, random=True, wait_ms=20, iterations=1):
-    """Draw rainbow that uniformly distributes itself across all pixels."""
-    # setAll(0,0,0);
+def meteor(strip, color, num_meteors=5, meteor_size=10, decay=64, random=True, wait_ms=20, iterations=1):
+    meteor_offset = int(LED_COUNT/num_meteors)
+    
     for i in range(LED_COUNT):
         strip.setPixelColor(i, 0)
     strip.show()
   
-    # for(int i = 0; i < NUM_LEDS+NUM_LEDS; i++) {
     for i in range(LED_COUNT * 2):
-    
-        # // fade brightness all LEDs one step
-        # for(int j=0; j<NUM_LEDS; j++) {
-        #     if( (!meteorRandomDecay) || (random(10)>5) ) {
-        #         fadeToBlack(j, meteorTrailDecay );        
-        #     }
-        # }
         
         for j in range(LED_COUNT):
             if not random or uniform(0, 10) > 5:
                 fade_to_black(j, decay)
         
-        # // draw meteor
-        # for(int j = 0; j < meteorSize; j++) {
-        #     if( ( i-j <NUM_LEDS) && (i-j>=0) ) {
-        #         setPixel(i-j, red, green, blue);
-        #     } 
-        # }
-        
         for j in range(meteor_size):
-            if (i-j) < LED_COUNT and (i-j) >= 0:
-                strip.setPixelColor(i-j, color)
+            for k in range(num_meteors):
+                if ((i-meteor_offset*k)-j) < LED_COUNT and ((i-meteor_offset*k)-j) >= 0:
+                    strip.setPixelColor((i-meteor_offset*k)-j, color)
    
         strip.show()
         time.sleep(wait_ms/1000.0)
