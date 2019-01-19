@@ -32,11 +32,16 @@ def fade_to_black(index, fadeValue):
 def meteor(strip, color, num_meteors=5, meteor_size=10, decay=64, random=True, wait_ms=20, iterations=1):
     meteor_offset = int(LED_COUNT/num_meteors)
     
+    meteors = []
+    for i in range(num_meteors):
+        meteors.append(0-meteor_offset*i)
+    
     for i in range(LED_COUNT):
         strip.setPixelColor(i, 0)
     strip.show()
   
-    for i in range(LED_COUNT * 2):
+    # for i in range(LED_COUNT * 2):
+    while True:
         
         for j in range(LED_COUNT):
             if not random or uniform(0, 10) > 5:
@@ -44,8 +49,12 @@ def meteor(strip, color, num_meteors=5, meteor_size=10, decay=64, random=True, w
         
         for j in range(meteor_size):
             for k in range(num_meteors):
-                if ((i-meteor_offset*k)-j) < LED_COUNT and ((i-meteor_offset*k)-j) >= 0:
-                    strip.setPixelColor((i-meteor_offset*k)-j, color)
+                if meteors[k]-j < LED_COUNT:
+                    if (meteors[k]-j) < LED_COUNT and (meteors[k]-j) >= 0:
+                        strip.setPixelColor(meteors[k]-j, color)
+                    meteors[k] += 1
+                else:
+                    meteors[k] = 0
    
         strip.show()
         time.sleep(wait_ms/1000.0)
