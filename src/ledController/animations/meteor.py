@@ -49,6 +49,11 @@ def meteor(strip, color, num_meteors=5, meteor_size=10, decay=64, random=True, w
         
         for j in range(meteor_size):
             for k in range(num_meteors):
+                if ((i-meteor_offset*k)-j) < LED_COUNT and ((i-meteor_offset*k)-j) >= 0:
+                    strip.setPixelColor((i-meteor_offset*k)-j, color)
+   
+        for k in range(num_meteors):
+            for j in range(meteor_size):
                 if meteors[k]-j < LED_COUNT:
                     if (meteors[k]-j) < LED_COUNT and (meteors[k]-j) >= 0:
                         strip.setPixelColor(meteors[k]-j, color)
