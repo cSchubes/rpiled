@@ -1,9 +1,9 @@
-exports.CURR_ANIMATION_PID = -1
-exports.HTTP_CODES = {
+var CURR_ANIMATION_PID = -1
+const HTTP_CODES = {
   Ok: 200,
   InternalServerError: 500,
 }
-exports.gammaArr = [
+const GAMMA = [
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
   0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
   1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
@@ -21,4 +21,9 @@ exports.gammaArr = [
 177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
 215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 ];
 
-exports.animationFields = ['name', 'template', 'favorite'];
+const ANIMATION_FIELDS = ['name', 'template', 'favorite'];
+
+const METEOR_ARGS = ['time', 'meteors']
+const RAINBOW_STRIP_ARGS = ['time'];
+
+module.exports = { CURR_ANIMATION_PID, HTTP_CODES, GAMMA, ANIMATION_FIELDS, METEOR_ARGS, RAINBOW_STRIP_ARGS }

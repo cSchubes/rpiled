@@ -8,13 +8,10 @@ router.post('/', function(req, res, next) {
   res.send('respond with a resource fcukcer');
 });
 
-/* Set up to use animation router. */
+/* Set up to use animation router for animation triggering and database. */
 router.use('/animations', animationRouter);
 
 /* Post new color to LEDs */
 router.post('/uniformColor/setColor', uniformController.setColor);
-
-/* Database getters. */
-router.get('/')
 
 module.exports = router;

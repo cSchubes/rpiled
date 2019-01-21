@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const animationController = require('../ledController/animationController');
-const globals = require('../globals');
+const { HTTP_CODES, ANIMATION_FIELDS } = require('../globals');
 var knexfile = require('../../knexfile');
 const stage = (process.env.NODE_ENV || 'development');
 const knex = require('knex')(knexfile[stage]);
@@ -32,6 +32,7 @@ router.post('/strandTest', animationController.strandTest);
 router.post('/rainbowGradient', animationController.rainbowGradient);
 router.post('/rainbowStrip', animationController.rainbowStrip);
 router.post('/theaterChase', animationController.theaterChase);
+router.post('/meteor', animationController.meteor);
 
 /* DATABASE */
 /**
@@ -42,7 +43,7 @@ router.get('/', async (req, res, next) => {
   const onlyFavs = req.query.onlyFav === 'true';
   let result = {}
   result.animations = await getAllAnimations(onlyFavs);
-  res.status(globals.HTTP_CODES.Ok).send(result);
+  res.status(HTTP_CODES.Ok).send(result);
 })
 
 /**
@@ -52,9 +53,9 @@ router.post('/', async (req, res, next) => {
   let customTemplate = req.body.animation;
   let animation = {};
   // remove animation fields from template object
-  for (let i = 0; i<globals.animationFields.length; i++) {
-    animation[globals.animationFields[i]] = customTemplate[globals.animationFields[i]];
-    delete customTemplate[globals.animationFields[i]];
+  for (let i = 0; i<ANIMATION_FIELDS.length; i++) {
+    animation[ANIMATION_FIELDS[i]] = customTemplate[ANIMATION_FIELDS[i]];
+    delete customTemplate[ANIMATION_FIELDS[i]];
   }
   // insert animation
   await knex.insert(animation).into('Animations');
@@ -64,7 +65,7 @@ router.post('/', async (req, res, next) => {
   // add id to template object
   customTemplate.id = id;
   await knex.insert(customTemplate).into(animation.template);
-  res.status(globals.HTTP_CODES.Ok).json({
+  res.status(HTTP_CODES.Ok).json({
     message: "Successfully added animation to database."
   })
 })
@@ -76,9 +77,9 @@ router.put('/', async (req, res, next) => {
   let customTemplate = req.body.animation;
   let animation = {};
   // separate animation fields from template fields
-  for (let i = 0; i<globals.animationFields.length; i++) {
-    animation[globals.animationFields[i]] = customTemplate[globals.animationFields[i]];
-    delete customTemplate[globals.animationFields[i]];
+  for (let i = 0; i<ANIMATION_FIELDS.length; i++) {
+    animation[ANIMATION_FIELDS[i]] = customTemplate[ANIMATION_FIELDS[i]];
+    delete customTemplate[ANIMATION_FIELDS[i]];
   }
   // grab id and remove for use
   let id = customTemplate.id;
@@ -87,7 +88,7 @@ router.put('/', async (req, res, next) => {
   await knex('Animations').where('id', id).update(animation);
   // update in template specific table
   await knex(animation.template).where('id', id).update(customTemplate);
-  res.status(globals.HTTP_CODES.Ok).json({
+  res.status(HTTP_CODES.Ok).json({
     message: "Successfully updated animation in database."
   })
 })
@@ -101,9 +102,7 @@ router.delete('/', async (req, res, next) => {
   let template = req.body.template;
   let num = await knex('Animations').where('id', id).del();
   let animNum = await knex(template).where('id', id).del();
-  // console.log(num);
-  // console.log(animNum);
-  res.status(globals.HTTP_CODES.Ok).json({
+  res.status(HTTP_CODES.Ok).json({
     message: "Successfully deleted animation from database."
   });
 })
@@ -119,7 +118,7 @@ router.get('/templates', async (req, res, next) => {
   } else {
     result.templates = await knex.select().table('Templates');
   }
-  res.status(globals.HTTP_CODES.Ok).send(result);
+  res.status(HTTP_CODES.Ok).send(result);
 })
 
 module.exports = router;

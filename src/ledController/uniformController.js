@@ -7,7 +7,8 @@
  */
 
 const { execFile } = require('child_process');
-var globals = require('../globals');
+var { CURR_ANIMATION_PID } = require('../globals');
+const { HTTP_CODES, GAMMA } = require('../globals');
   
 var gamma   = 2; // Correction factor
 var max_in  = 255; // Top end of INPUT range
@@ -25,10 +26,10 @@ console.log(gammaArr);
 /**** HELPERS ****/
 
 function killOldProcess() {
-  if (globals.CURR_ANIMATION_PID != -1) {
-    process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
-    console.log('Killed the old process: ' + globals.CURR_ANIMATION_PID);
-    globals.CURR_ANIMATION_PID = -1;
+  if (CURR_ANIMATION_PID != -1) {
+    process.kill(CURR_ANIMATION_PID, 'SIGINT');
+    console.log('Killed the old process: ' + CURR_ANIMATION_PID);
+    CURR_ANIMATION_PID = -1;
   }
 }
 
@@ -45,9 +46,9 @@ function hexToRgb(hex) {
 
 exports.setColor = async (req, res, next) => {
   killOldProcess();
-  let r = globals.gammaArr[req.body.r];
-  let g = globals.gammaArr[req.body.g];
-  let b = globals.gammaArr[req.body.b];
+  let r = GAMMA[req.body.r];
+  let g = GAMMA[req.body.g];
+  let b = GAMMA[req.body.b];
   console.log('Gamma corrrected: ' + r + ' ' + g + ' ' + b);
   let brightness = req.body.brightness;
   let args = [`${__dirname}/uniformColor/set_color.py`, '-b', `${brightness}`, '--color', `${r}`, `${g}`, `${b}`]
@@ -61,7 +62,7 @@ exports.setColor = async (req, res, next) => {
         return resolve();
       })
     })
-    res.status(globals.HTTP_CODES.Ok).json({
+    res.status(HTTP_CODES.Ok).json({
       originalRGB: {
         r: req.body.r,
         g: req.body.g,
@@ -75,7 +76,7 @@ exports.setColor = async (req, res, next) => {
       message: 'Successfully changed color.'
     });
   } catch (err) {
-    res.status(globals.HTTP_CODES.InternalServerError).json({
+    res.status(HTTP_CODES.InternalServerError).json({
       error: 'Unable to change color.'
     })
   }
