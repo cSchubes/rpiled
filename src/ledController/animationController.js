@@ -17,6 +17,7 @@ function rgb2Int(r, g, b) {
 
 function killOldProcess() {
   if (globals.CURR_ANIMATION_PID != -1) {
+    console.log(globals.CURR_ANIMATION_PID);
     process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
     console.log('Killed the old process: ' + globals.CURR_ANIMATION_PID);
   }
