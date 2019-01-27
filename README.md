@@ -1,5 +1,7 @@
 # RPILED Backend
 
+The backend for the RPILED project. Designed to run on a Raspberry Pi 3 running balenaOS.
+
 ## Database Structure
 
 ### Templates
