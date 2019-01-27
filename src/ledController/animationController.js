@@ -7,7 +7,7 @@
  */
 
 const { execFile } = require('child_process');
-var { CURR_ANIMATION_PID } = require('../globals');
+var globals = require('../globals');
 const { HTTP_CODES, GAMMA } = require('../globals');
 
 /*************************** HELPERS *********************************************/
@@ -16,9 +16,9 @@ function rgb2Int(r, g, b) {
 }
 
 function killOldProcess() {
-  if (CURR_ANIMATION_PID != -1) {
-    process.kill(CURR_ANIMATION_PID, 'SIGINT');
-    console.log('Killed the old process: ' + CURR_ANIMATION_PID);
+  if (globals.CURR_ANIMATION_PID != -1) {
+    process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
+    console.log('Killed the old process: ' + globals.CURR_ANIMATION_PID);
   }
 }
 
@@ -27,10 +27,10 @@ function startNewProcess(args) {
     // reset process tracking if the animation fails
     if (err) {
       console.log(err);
-      CURR_ANIMATION_PID = -1;
+      globals.CURR_ANIMATION_PID = -1;
     }
   })
-  CURR_ANIMATION_PID = child.pid;
+  globals.CURR_ANIMATION_PID = child.pid;
   return child;
 }
 

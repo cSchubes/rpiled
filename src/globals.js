@@ -1,4 +1,4 @@
-var CURR_ANIMATION_PID = -1
+exports.CURR_ANIMATION_PID = -1
 const HTTP_CODES = {
   Ok: 200,
   InternalServerError: 500,

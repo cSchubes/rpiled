@@ -7,7 +7,7 @@
  */
 
 const { execFile } = require('child_process');
-var { CURR_ANIMATION_PID } = require('../globals');
+var globals = require('../globals');
 const { HTTP_CODES, GAMMA } = require('../globals');
   
 var gamma   = 2; // Correction factor
@@ -26,10 +26,10 @@ console.log(gammaArr);
 /**** HELPERS ****/
 
 function killOldProcess() {
-  if (CURR_ANIMATION_PID != -1) {
-    process.kill(CURR_ANIMATION_PID, 'SIGINT');
-    console.log('Killed the old process: ' + CURR_ANIMATION_PID);
-    CURR_ANIMATION_PID = -1;
+  if (globals.CURR_ANIMATION_PID != -1) {
+    process.kill(globals.CURR_ANIMATION_PID, 'SIGINT');
+    console.log('Killed the old process: ' + globals.CURR_ANIMATION_PID);
+    globals.CURR_ANIMATION_PID = -1;
   }
 }
 
