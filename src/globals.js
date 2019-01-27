@@ -26,4 +26,4 @@ const ANIMATION_FIELDS = ['name', 'template', 'favorite'];
 const METEOR_ARGS = ['time', 'meteors']
 const RAINBOW_STRIP_ARGS = ['time'];
 
-module.exports = { CURR_ANIMATION_PID, HTTP_CODES, GAMMA, ANIMATION_FIELDS, METEOR_ARGS, RAINBOW_STRIP_ARGS }
+module.exports = { HTTP_CODES, GAMMA, ANIMATION_FIELDS, METEOR_ARGS, RAINBOW_STRIP_ARGS }
