@@ -68,6 +68,9 @@ if __name__ == '__main__':
     # parse args
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--time', type=int, default=20, help='The wait time in ms for the animation.')
+    parser.add_argument('-c', '--color', type=int, default=255, help='The color to display in base 10 hex')
+    parser.add_argument('-m', '--meteors', type=int, default=5, help='The number of meteors to display at once.')
+    parser.add_argument('-s', '--size', type=int, default=10, help='The size of each meteor.')
     args = parser.parse_args()
     # set up signal handler
     signal.signal(signal.SIGINT, signal_handler)
@@ -76,7 +79,7 @@ if __name__ == '__main__':
 
     try:
         while True:
-            meteor(strip, Color(0, 0, 255))
+            meteor(strip, args.color, num_meteors=args.meteors, meteor_size=args.meteor_size, wait_ms=args.time)
 
     except KeyboardInterrupt:
         print('lmao')
