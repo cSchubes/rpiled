@@ -16,7 +16,7 @@ def signal_handler(sig, frame):
     strip.show()
     sys.exit(0)
 
-def strobe(strip, color, wait_ms=20, iterations=1):
+def strobe(strip, color, wait_ms=20, brightness=150, iterations=1):
     for i in range(LED_COUNT):
         strip.setPixelColor(i, color)
     
@@ -35,6 +35,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-t', '--time', type=int, default=30, help='The wait time in ms for the animation.')
     parser.add_argument('-c', '--color', type=int, default=16777215, help='The color to display in base 10 hex')
+    parser.add_argument('-b', '--brightness', type=int, default=150, help='The brightness.')
     args = parser.parse_args()
     # set up signal handler
     signal.signal(signal.SIGINT, signal_handler)
@@ -43,7 +44,7 @@ if __name__ == '__main__':
 
     try:
         while True:
-            strobe(strip, args.color, wait_ms=args.time)
+            strobe(strip, args.color, wait_ms=args.time, brightness=args.brightness)
 
     except KeyboardInterrupt:
         print('lmao')
