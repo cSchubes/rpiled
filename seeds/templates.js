@@ -36,6 +36,27 @@ exports.seed = function(knex, Promise) {
           defaults: JSON.stringify({
             time: 50,
           })
+        },
+        {
+          name: 'meteor',
+          subtitle: 'Meteors streak across the strip.',
+          icon: 'mdi-meteor',
+          defaults: JSON.stringify({
+            time: 20,
+            color: 13107455, // purple (200, 0, 255) in RGB
+            meteors: 5,
+            size: 10
+          })
+        },
+        {
+          name: 'strobe',
+          subtitle: 'Seizure Warning.',
+          icon: 'mdi-flashlight',
+          defaults: JSON.stringify({
+            time: 30,
+            color: 16777215,
+            brightness: 150,
+          })
         }
       ]);
     });

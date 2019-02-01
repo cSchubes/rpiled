@@ -33,7 +33,7 @@ def strobe(strip, color, wait_ms=20, iterations=1):
 if __name__ == '__main__':
     # parse args
     parser = argparse.ArgumentParser()
-    parser.add_argument('-t', '--time', type=int, default=5, help='The wait time in ms for the animation.')
+    parser.add_argument('-t', '--time', type=int, default=30, help='The wait time in ms for the animation.')
     parser.add_argument('-c', '--color', type=int, default=16777215, help='The color to display in base 10 hex')
     args = parser.parse_args()
     # set up signal handler

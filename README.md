@@ -29,6 +29,12 @@ id: int (foreign)
 time: int
 colors: N/A (yet)
 
+### meteor
+id: int (foreign)
+time: int
+color: int
+
+
 ## REST API
 
 ### Animations

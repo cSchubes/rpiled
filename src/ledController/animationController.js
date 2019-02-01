@@ -8,7 +8,7 @@
 
 const { execFile } = require('child_process');
 var globals = require('../globals');
-const { HTTP_CODES, GAMMA } = require('../globals');
+const { HTTP_CODES, GAMMA, METEOR_ARGS, STROBE_ARGS } = require('../globals');
 
 /*************************** HELPERS *********************************************/
 function rgb2Int(r, g, b) {
@@ -33,6 +33,17 @@ function startNewProcess(args) {
   })
   globals.CURR_ANIMATION_PID = child.pid;
   return child;
+}
+
+function parseArgs(body, argList) {
+  let result = [];
+  for(let i = 0; i<argList.length; i++) {
+    if (body[argList[i]]) {
+      result.push(`--${argList[i]}`);
+      result.push(body[argList[i]]);
+    }
+  }
+  return result;
 }
 
 /**************************** TESTING ANIMATIONS ***********************************/
@@ -134,19 +145,26 @@ exports.meteor = (req, res, next) => {
   console.log('Starting meteor...')
   killOldProcess();
   let optionalArgs = parseArgs(req.body, METEOR_ARGS);
-  if (req.body.time) {
-    optionalArgs.push('--time');
-    optionalArgs.push(req.body.time);
-  }
-  if (req.body.meteors) {
-    optionalArgs.push('--meteors');
-    optionalArgs.push(req.body.meteors);
-  }
   let args = [`${__dirname}/animations/meteor.py`];
-  args = args.concat(time);
+  args = args.concat(optionalArgs);
+  console.log(args);
   let child = startNewProcess(args);
   console.log('Started Meteor at: ' + child.pid);
   res.status(HTTP_CODES.Ok).json({
     message: 'Triggered Meteor.'
+  });
+}
+
+exports.strobe= (req, res, next) => {
+  console.log('Starting strobe...')
+  killOldProcess();
+  let optionalArgs = parseArgs(req.body, STROBE_ARGS);
+  let args = [`${__dirname}/animations/strobe.py`];
+  args = args.concat(optionalArgs);
+  console.log(args);
+  let child = startNewProcess(args);
+  console.log('Started Strobe at: ' + child.pid);
+  res.status(HTTP_CODES.Ok).json({
+    message: 'Triggered Strobe.'
   });
 }

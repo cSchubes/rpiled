@@ -33,6 +33,7 @@ router.post('/rainbowGradient', animationController.rainbowGradient);
 router.post('/rainbowStrip', animationController.rainbowStrip);
 router.post('/theaterChase', animationController.theaterChase);
 router.post('/meteor', animationController.meteor);
+router.post('/strobe', animationController.strobe);
 
 /* DATABASE */
 /**
