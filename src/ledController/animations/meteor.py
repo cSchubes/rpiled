@@ -79,7 +79,7 @@ if __name__ == '__main__':
 
     try:
         while True:
-            meteor(strip, args.color, num_meteors=args.meteors, meteor_size=args.meteor_size, wait_ms=args.time)
+            meteor(strip, args.color, num_meteors=args.meteors, meteor_size=args.size, wait_ms=args.time)
 
     except KeyboardInterrupt:
         print('lmao')
