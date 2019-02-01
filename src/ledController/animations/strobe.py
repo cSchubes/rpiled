@@ -17,6 +17,7 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 def strobe(strip, color, wait_ms=20, brightness=150, iterations=1):
+    strip.setBrightness(brightness)
     for i in range(LED_COUNT):
         strip.setPixelColor(i, color)
     
