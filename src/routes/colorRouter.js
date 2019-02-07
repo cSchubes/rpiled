@@ -48,10 +48,15 @@ router.get('/', async (req, res, next) => {
  * Expects the request body to have an animation object with the required fields for the animation.
  */
 router.post('/', async (req, res, next) => {
-  let colorVar = req.body.color;
-  await knex.insert(colorVar).into('Colors');
-  colorVar.message = "Successfully added color to database."
-  res.status(HTTP_CODES.Ok).json(colorVar);
+  try {
+    let colorVar = req.body.color;
+    await knex.insert(colorVar).into('Colors');
+    colorVar.message = "Successfully added color to database."
+    res.status(HTTP_CODES.Ok).json(colorVar);
+  } catch (e) {
+    console.log(e);
+    res.status(400).json();
+  }
 })
 
 /**
