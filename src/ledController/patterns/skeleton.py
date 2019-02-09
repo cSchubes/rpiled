@@ -3,18 +3,20 @@ import signal
 import sys
 import os
 from rpi_ws281x import *
+# import constants from directory above
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from constants import *
 
 strip = Adafruit_NeoPixel(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 
+# handles the kill signal gracefully
 def signal_handler(sig, frame):
     for i in range(LED_COUNT):
         strip.setPixelColor(i, 0)
     strip.show()
     sys.exit(0)
     
-def worldCup():
+def example_pattern(example_parameter):
     for i in range(150, 200):
         strip.setPixelColor(i, 0x0000ff)
     for i in range(200, 250):
@@ -30,13 +32,17 @@ def worldCup():
     strip.show()
 
 if __name__ == '__main__':
-    # Create NeoPixel object with appropriate configuration.
+    # parse args
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--example', type=int, default=20, help='Pass parameters this way.')
+    args = parser.parse_args()
+    # set up signal handler
     signal.signal(signal.SIGINT, signal_handler)
     # Intialize the library (must be called once before other functions).
     strip.begin()
 
     try:
-        worldCup()
+        example_pattern(args.e)
 
     except KeyboardInterrupt:
         print('lmao')
