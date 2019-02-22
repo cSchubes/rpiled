@@ -16,3 +16,7 @@ This document lists all the materials required to build a working rpiled setup.
 2. [3.3V to 5V Logic Level Converter](https://www.adafruit.com/product/1787)
 3. [>5V, >1000uF Capacitor](https://www.amazon.com/McIgIcM-1000uf-capacitor-Aluminum-electrolytic/dp/B06WGPNM19/ref=sr_1_4?ie=UTF8&qid=1550788229&sr=8-4&keywords=1000uf+25v+capacitor) x2
 4. [WiFi Smart Plug](https://www.amazon.com/McIgIcM-1000uf-capacitor-Aluminum-electrolytic/dp/B06WGPNM19/ref=sr_1_4?ie=UTF8&qid=1550788229&sr=8-4&keywords=1000uf+25v+capacitor) x2
+
+## Miscellaneous
+1. [Surge Protector](https://www.amazon.com/AmazonBasics-6-Outlet-Surge-Protector-2-Pack/dp/B014EKQ5AA/ref=sr_1_4?s=electronics&ie=UTF8&qid=1550788908&sr=1-4&keywords=surge+protector)
+2. [Tacks](https://www.amazon.com/Universal-31304-8-Inch-Clear-Push/dp/B00078449I/ref=sr_1_1?s=electronics&ie=UTF8&qid=1550788989&sr=1-1&keywords=tacks) for mounting purposes.
