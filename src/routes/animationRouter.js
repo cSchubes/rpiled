@@ -67,8 +67,9 @@ router.post('/', async (req, res, next) => {
   customTemplate.id = id;
    // 1. Manual Serialization for JSON/Array fields
   if (customTemplate.color !== undefined && customTemplate.color !== null && Array.isArray(customTemplate.color)) {
-      // Ensure the array of RGB objects is converted to a string for SQLite
-      customTemplate.color = JSON.stringify(customTemplate.color);
+    // Ensure the array of RGB objects is converted to a string for SQLite
+    customTemplate.color = JSON.stringify(customTemplate.color);
+  }
   await knex.insert(customTemplate).into(animation.template);
   res.status(HTTP_CODES.Ok).json({
     message: "Successfully added animation to database."
