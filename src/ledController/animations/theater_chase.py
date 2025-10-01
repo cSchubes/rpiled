@@ -31,6 +31,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--colors', type=int, nargs='*', default=[255, 16711680, 65280], help='The color(s) to display in hex')
     parser.add_argument('-t', '--time', type=int, default=50, help='The wait time in ms for the animation.')
+    parser.add_argument('-i', '--iterations', type=int, default=0, help='The total number of full color cycles to perform. Set to 0 for infinite.')
     args = parser.parse_args()
 
     # Set up kill signal handling
@@ -38,10 +39,12 @@ if __name__ == '__main__':
     # Intialize the library (must be called once before other functions).
     strip.begin()
 
+    pattern_repeats = args.iterations if args.iterations > 0 else 1000 # Use a large number for 'infinite'
+
     try:
         while True:
             for c in args.colors:
-                theaterChase(strip, c, wait_ms=args.time)
+                theaterChase(strip, c, wait_ms=args.time, iterations=pattern_repeats)
 
     except KeyboardInterrupt:
         print('lmao')
