@@ -118,7 +118,7 @@ exports.theaterChase = (req, res, next) => {
   killOldProcess();
   // parse RGB colors into hex colors to feed to animation script
   let optionalArgs = [];
-  if (req.body.colors) {
+  if (req.body.color) {
     optionalArgs.push('--colors');
     for (let i = 0; i < req.body.colors.length; i++) {
       let r = GAMMA[req.body.colors[i].r];
