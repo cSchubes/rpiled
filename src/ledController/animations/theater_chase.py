@@ -31,7 +31,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-c', '--colors', type=int, nargs='*', default=[255, 16711680, 65280], help='The color(s) to display in hex')
     parser.add_argument('-t', '--time', type=int, default=50, help='The wait time in ms for the animation.')
-    parser.add_argument('-i', '--iterations', type=int, default=0, help='The total number of full color cycles to perform. Set to 0 for infinite.')
+    parser.add_argument('-i', '--iterations', type=int, default=10, help='The total number of full color cycles to perform. Set to 0 for infinite.')
     args = parser.parse_args()
 
     # Set up kill signal handling
