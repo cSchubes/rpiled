@@ -131,18 +131,53 @@ exports.theaterChase = (req, res, next) => {
   killOldProcess();
   // parse RGB colors into hex colors to feed to animation script
   let optionalArgs = [];
+  //if (req.body.color) {
+   // optionalArgs.push('--colors');
+    //for (let i = 0; i < req.body.color.length; i++) {
+     // let r = GAMMA[req.body.color[i].r];
+     // let g = GAMMA[req.body.color[i].g];
+     // let b = GAMMA[req.body.color[i].b];
+     // optionalArgs.push(rgb2Int(r, g, b));
+   // }
+  //}
+
   if (req.body.color) {
-    optionalArgs.push('--colors');
-    for (let i = 0; i < req.body.color.length; i++) {
-      let r = GAMMA[req.body.color[i].r];
-      let g = GAMMA[req.body.color[i].g];
-      let b = GAMMA[req.body.color[i].b];
-      optionalArgs.push(rgb2Int(r, g, b));
+    let colorsArray = req.body.color;
+
+    // 1. CHECK and PARSE if the color data is a JSON string (i.e., from the database)
+    if (typeof colorsArray === 'string') {
+        try {
+            colorsArray = JSON.parse(colorsArray);
+        } catch (e) {
+            console.error('Failed to parse color JSON string:', e);
+            // If parsing fails, stop processing colors
+            return;
+        }
     }
-  }
+
+    // 2. Ensure it's an array before processing
+    if (Array.isArray(colorsArray) && colorsArray.length > 0) {
+        optionalArgs.push('--colors');
+        
+        // 3. Process each color object (now guaranteed to be an array)
+        for (let i = 0; i < colorsArray.length; i++) {
+            // Access properties on the parsed color object
+            let r = GAMMA[colorsArray[i].r];
+            let g = GAMMA[colorsArray[i].g];
+            let b = GAMMA[colorsArray[i].b];
+            
+            optionalArgs.push(rgb2Int(r, g, b));
+        }
+    }
+ }
+  
   if (req.body.time) {
     optionalArgs.push('--time');
     optionalArgs.push(req.body.time);
+  }
+  if (req.body.iterations) {
+    optionalArgs.push('--iterations');
+    optionalArgs.push(req.body.iterations);
   }
   let args = [`${__dirname}/animations/theater_chase.py`];
   args = args.concat(optionalArgs);
