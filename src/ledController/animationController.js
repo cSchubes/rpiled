@@ -120,10 +120,10 @@ exports.theaterChase = (req, res, next) => {
   let optionalArgs = [];
   if (req.body.color) {
     optionalArgs.push('--colors');
-    for (let i = 0; i < req.body.colors.length; i++) {
-      let r = GAMMA[req.body.colors[i].r];
-      let g = GAMMA[req.body.colors[i].g];
-      let b = GAMMA[req.body.colors[i].b];
+    for (let i = 0; i < req.body.color.length; i++) {
+      let r = GAMMA[req.body.color[i].r];
+      let g = GAMMA[req.body.color[i].g];
+      let b = GAMMA[req.body.color[i].b];
       optionalArgs.push(rgb2Int(r, g, b));
     }
   }
