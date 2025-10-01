@@ -65,7 +65,7 @@ router.post('/', async (req, res, next) => {
   let id = items[0].id;
   // add id to template object
   customTemplate.id = id;
-   // 1. Manual Serialization for JSON/Array fields
+  // 1. Manual Serialization for JSON/Array fields
   if (customTemplate.color !== undefined && customTemplate.color !== null && Array.isArray(customTemplate.color)) {
     // Ensure the array of RGB objects is converted to a string for SQLite
     customTemplate.color = JSON.stringify(customTemplate.color);
@@ -93,6 +93,11 @@ router.put('/', async (req, res, next) => {
   // update in Animations table
   await knex('Animations').where('id', id).update(animation);
   // update in template specific table
+  // 1. Manual Serialization for JSON/Array fields
+  if (customTemplate.color !== undefined && customTemplate.color !== null && Array.isArray(customTemplate.color)) {
+    // Ensure the array of RGB objects is converted to a string for SQLite
+    customTemplate.color = JSON.stringify(customTemplate.color);
+  }
   await knex(animation.template).where('id', id).update(customTemplate);
   res.status(HTTP_CODES.Ok).json({
     message: "Successfully updated animation in database."
@@ -100,7 +105,7 @@ router.put('/', async (req, res, next) => {
 })
 
 /**
- * Update animation
+ * delete animation
  */
 router.delete('/', async (req, res, next) => {
   console.log(req.body);
