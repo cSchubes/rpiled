@@ -15,6 +15,19 @@ function rgb2Int(r, g, b) {
   return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 }
 
+function int2rgb(int) {
+  // R component is bits 16-23
+  const r = (int >> 16) & 0xFF; 
+  
+  // G component is bits 8-15
+  const g = (int >> 8) & 0xFF; 
+  
+  // B component is bits 0-7
+  const b = int & 0xFF; 
+  
+  return { r, g, b };
+}
+
 function killOldProcess() {
   if (globals.CURR_ANIMATION_PID != -1) {
     console.log(globals.CURR_ANIMATION_PID);
@@ -144,6 +157,13 @@ exports.theaterChase = (req, res, next) => {
 exports.meteor = (req, res, next) => {
   console.log('Starting meteor...')
   killOldProcess();
+  if (req.body.color) {
+    let rgb_elem = int2rgb(req.body.color);
+    let r = GAMMA[rgb_elem.r];
+    let g = GAMMA[rgb_elem.g];
+    let b = GAMMA[rgb_elem.b];
+    req.body.color = rgb2Int(r, g, b);
+  } 
   let optionalArgs = parseArgs(req.body, METEOR_ARGS);
   let args = [`${__dirname}/animations/meteor.py`];
   args = args.concat(optionalArgs);
