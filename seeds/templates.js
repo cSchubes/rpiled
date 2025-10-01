@@ -35,6 +35,8 @@ exports.seed = function(knex, Promise) {
           icon: 'mdi-filmstrip',
           defaults: JSON.stringify({
             time: 50,
+            iterations: 10,
+            //color: 16711680  // red (255, 0, 0) in RGB
           })
         },
         {
